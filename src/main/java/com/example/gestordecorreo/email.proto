@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package email;
+
+service EmailService {
+    rpc SendEmail (EmailRequest) returns (EmailResponse);
+    rpc ReceiveEmails (ReceiveRequest) returns (stream Email);
+}
+
+message Email {
+    string asunto = 1;
+    string contenido = 2;
+    Contacto remitente = 3;
+    repeated Contacto destinatarios = 4;
+}
+
+message Contacto {
+    string nombreCompleto = 1;
+    string email = 2;
+}
+
+message EmailRequest {
+    Email email = 1;
+}
+
+message EmailResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message ReceiveRequest {
+    string email = 1;
+}
