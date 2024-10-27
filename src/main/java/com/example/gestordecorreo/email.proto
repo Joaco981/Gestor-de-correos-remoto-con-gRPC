@@ -24,10 +24,10 @@ message EmailRequest {
 }
 
 message EmailResponse {
-    bool success = 1;
-    string message = 2;
+    bool success = 1; // Indica si el envío fue exitoso
+    string message = 2; // Mensaje de respuesta
 }
 
 message ReceiveRequest {
-    string email = 1;
+    string email = 1; // Dirección de correo para recibir correos
 }
