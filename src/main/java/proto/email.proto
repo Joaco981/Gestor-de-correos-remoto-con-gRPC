@@ -8,11 +8,13 @@ service EmailService {
 }
 
 message Email {
-    string asunto = 1;
-    string contenido = 2;
-    Contacto remitente = 3;
-    repeated Contacto destinatarios = 4;
+    string id = 1;  
+    string asunto = 2;
+    string contenido = 3;
+    Contacto remitente = 4;
+    repeated Contacto destinatarios = 5;
 }
+
 
 message Contacto {
     string nombreCompleto = 1;

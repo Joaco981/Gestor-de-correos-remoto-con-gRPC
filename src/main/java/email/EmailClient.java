@@ -6,6 +6,8 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+import java.util.UUID;  // Importar UUID
+
 public class EmailClient {
     private final ManagedChannel channel;
     private final EmailServiceGrpc.EmailServiceBlockingStub blockingStub;
@@ -20,23 +22,13 @@ public class EmailClient {
     }
 
     public void sendEmail(EmailOuterClass.Email email) {
-        EmailOuterClass.EmailRequest request = EmailOuterClass.EmailRequest.newBuilder()
-                .setEmail(email)
-                .build();
+        EmailOuterClass.EmailRequest request = EmailOuterClass.EmailRequest.newBuilder().setEmail(email).build();
         EmailOuterClass.EmailResponse response = blockingStub.sendEmail(request);
-        
-        // Imprimir el resultado del envío
-        if (response.getSuccess()) {
-            System.out.println("Email enviado correctamente: " + response.getMessage());
-        } else {
-            System.out.println("Error al enviar el email: " + response.getMessage());
-        }
+        System.out.println(response.getMessage());
     }
 
-    public void receiveEmails(String emailAddress) {
-        EmailOuterClass.ReceiveRequest request = EmailOuterClass.ReceiveRequest.newBuilder()
-                .setEmail(emailAddress)
-                .build();
+    public void receiveEmails(String email) {
+        EmailOuterClass.ReceiveRequest request = EmailOuterClass.ReceiveRequest.newBuilder().setEmail(email).build();
         asyncStub.receiveEmails(request, new StreamObserver<EmailOuterClass.Email>() {
             @Override
             public void onNext(EmailOuterClass.Email email) {
@@ -57,18 +49,17 @@ public class EmailClient {
         });
     }
 
-    // Método para cerrar el canal gRPC
     public void shutdown() {
         if (channel != null && !channel.isShutdown()) {
             channel.shutdown();
-            System.out.println("El canal se cerró correctamente.");
+            System.out.println("El canal se cerro correctamente.");
         }
     }
 
     public static void main(String[] args) {
         EmailClient client = new EmailClient("localhost", 50051);
-
-        // Crear y enviar un email
+    
+        // Crear un único email para pruebas
         EmailOuterClass.Contacto remitente = EmailOuterClass.Contacto.newBuilder()
                 .setNombreCompleto("Joaco Flores")
                 .setEmail("joaco@gmail.com")
@@ -78,19 +69,20 @@ public class EmailClient {
                 .setEmail("cande@gmail.com")
                 .build();
         EmailOuterClass.Email email = EmailOuterClass.Email.newBuilder()
+                .setId(UUID.randomUUID().toString())
                 .setAsunto("Hola")
                 .setContenido("Esto es un email de prueba")
                 .setRemitente(remitente)
                 .addDestinatarios(destinatario)
                 .build();
-        
-        // Enviar el email
+    
+        // Enviar email
         client.sendEmail(email);
-
-        // Recibir emails para una dirección específica
+    
+        // Recibir emails
         client.receiveEmails("cande@gmail.com");
-
-        // Cerrar el canal al final de la ejecución
         client.shutdown();
     }
+    
+    
 }
