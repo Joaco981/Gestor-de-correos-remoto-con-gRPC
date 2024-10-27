@@ -43,13 +43,9 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
 
     @Override
     public void receiveEmails(EmailOuterClass.ReceiveRequest request, StreamObserver<EmailOuterClass.Email> responseObserver) {
-        String email = request.getEmail();
+        // Enviar todos los correos almacenados
         for (EmailOuterClass.Email storedEmail : emailStorage) {
-            for (EmailOuterClass.Contacto destinatario : storedEmail.getDestinatariosList()) {
-                if (destinatario.getEmail().equals(email)) {
-                    responseObserver.onNext(storedEmail);
-                }
-            }
+            responseObserver.onNext(storedEmail);
         }
         responseObserver.onCompleted();
     }

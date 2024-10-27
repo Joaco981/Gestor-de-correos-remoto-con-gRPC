@@ -27,8 +27,8 @@ public class EmailClient {
         System.out.println(response.getMessage());
     }
 
-    public void receiveEmails(String email) {
-        EmailOuterClass.ReceiveRequest request = EmailOuterClass.ReceiveRequest.newBuilder().setEmail(email).build();
+    public void receiveEmails() {
+        EmailOuterClass.ReceiveRequest request = EmailOuterClass.ReceiveRequest.newBuilder().build(); // Crear la solicitud vacía
         asyncStub.receiveEmails(request, new StreamObserver<EmailOuterClass.Email>() {
             @Override
             public void onNext(EmailOuterClass.Email email) {
@@ -58,31 +58,27 @@ public class EmailClient {
 
     public static void main(String[] args) {
         EmailClient client = new EmailClient("localhost", 50051);
-    
+
         // Crear un único email para pruebas
         EmailOuterClass.Contacto remitente = EmailOuterClass.Contacto.newBuilder()
-                .setNombreCompleto("Joaco Flores")
-                .setEmail("joaco@gmail.com")
-                .build();
+            .setNombreCompleto("Joaco Flores")
+            .setEmail("joaco@gmail.com")
+            .build();
         EmailOuterClass.Contacto destinatario = EmailOuterClass.Contacto.newBuilder()
-                .setNombreCompleto("Cande Cano")
-                .setEmail("cande@gmail.com")
-                .build();
+            .setNombreCompleto("Cande Cano")
+            .setEmail("cande@gmail.com")
+            .build();
         EmailOuterClass.Email email = EmailOuterClass.Email.newBuilder()
-                .setId(UUID.randomUUID().toString())
-                .setAsunto("Hola")
-                .setContenido("Esto es un email de prueba")
-                .setRemitente(remitente)
-                .addDestinatarios(destinatario)
-                .build();
-    
-        // Enviar email
+            .setId(UUID.randomUUID().toString())
+            .setAsunto("Hola")
+            .setContenido("Esto es un email de prueba")
+            .setRemitente(remitente)
+            .addDestinatarios(destinatario)
+            .build();
+
         client.sendEmail(email);
-    
-        // Recibir emails
-        client.receiveEmails("cande@gmail.com");
+        // Cambiar aquí
+        client.receiveEmails(); // Sin parámetros
         client.shutdown();
     }
-    
-    
 }
