@@ -5,10 +5,12 @@ import java.util.regex.Pattern;
 public class Contacto {
     private String nombreCompleto;
     private String email;
+    public Bandeja bandeja;
 
     public Contacto(String nombreCompleto, String email) {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
+        this.bandeja = new Bandeja();
     }
 
     public String getNombre() {
@@ -23,7 +25,6 @@ public class Contacto {
         return email;
     }
 
- 
     //recibe la direccion de  email a validar
     //devuelve valor booleano 
     //clase Pattern: utiliza un patron de expresion regular para validar un email

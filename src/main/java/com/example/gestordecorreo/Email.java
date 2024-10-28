@@ -6,11 +6,12 @@ public class Email  {
     private String contenido;
     private Contacto remitente;
     private ArrayList<Contacto> destinatarios;
-   
+    
     //elemento del email
     public Email(){
         destinatarios = new ArrayList<Contacto>();
     }
+    
     public String getAsunto(){
         return asunto;
     }
@@ -43,7 +44,19 @@ public class Email  {
         destinatarios.add(valor);
     }
 
-    
+    public Email clonarEmail() {
+        Email correonuevo = new Email();      
+
+        correonuevo.setContenido(this.getContenido());
+        correonuevo.setAsunto(this.getAsunto());
+        correonuevo.setRemitente(this.getRemitente());
+        
+        for (Contacto destinatario : this.getDestinatarios()) {
+            correonuevo.agregarDestinatario(destinatario);
+        }
+        
+        return correonuevo;
+    }
 
    
     

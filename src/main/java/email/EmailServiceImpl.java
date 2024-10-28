@@ -14,7 +14,7 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
     @Override
     public void enviarEmail(EmailOuterClass.EmailRequest request, StreamObserver<EmailOuterClass.EmailResponse> responseObserver) {
         EmailOuterClass.Email emailProto = request.getEmail();
-        
+
         // Convertir EmailOuterClass.Email a com.example.gestordecorreo.Email
         Email email = new Email();
         email.setAsunto(emailProto.getAsunto());
@@ -38,33 +38,38 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
 
     @Override
     public void recibirEmails(EmailOuterClass.ReceiveRequest request, StreamObserver<EmailOuterClass.Email> responseObserver) {
-        
+        // Reemplaza esta parte por la forma en que obtienes el Contacto que desea recibir los emails
         Contacto contacto = new Contacto("Nombre del contacto", request.getEmail());
-        ArrayList<Email> emails = emailManager.getBandejaEntrada(contacto);
-        
+        ArrayList<Email> emails = contacto.bandeja.getBandejaEntrada();
+
+        // Verifica si realmente hay correos en la bandeja
+        if (emails.isEmpty()) {
+            System.out.println("No hay correos en la bandeja de entrada.");
+        }
+
         for (Email email : emails) {
-            EmailOuterClass.Email emailProto = EmailOuterClass.Email.newBuilder()
+            EmailOuterClass.Email.Builder emailProtoBuilder = EmailOuterClass.Email.newBuilder()
                     .setId(UUID.randomUUID().toString())
                     .setAsunto(email.getAsunto())
                     .setContenido(email.getContenido())
                     .setRemitente(EmailOuterClass.Contacto.newBuilder()
                             .setNombreCompleto(email.getRemitente().getNombre())
                             .setEmail(email.getRemitente().getEmail())
-                            .build())
-                    .build();
-            
+                            .build());
+
             for (Contacto destinatario : email.getDestinatarios()) {
-                emailProto = emailProto.toBuilder()
-                        .addDestinatarios(EmailOuterClass.Contacto.newBuilder()
-                                .setNombreCompleto(destinatario.getNombre())
-                                .setEmail(destinatario.getEmail())
-                                .build())
-                        .build();
+                emailProtoBuilder.addDestinatarios(EmailOuterClass.Contacto.newBuilder()
+                        .setNombreCompleto(destinatario.getNombre())
+                        .setEmail(destinatario.getEmail())
+                        .build());
             }
             
-            responseObserver.onNext(emailProto);
+            // Envía cada correo al cliente
+            responseObserver.onNext(emailProtoBuilder.build());
         }
-        
+
+        // Completa el stream una vez que se hayan enviado todos los correos
         responseObserver.onCompleted();
     }
+
 }

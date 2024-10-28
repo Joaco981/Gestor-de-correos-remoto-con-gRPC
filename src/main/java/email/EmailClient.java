@@ -42,7 +42,7 @@ public class EmailClient {
         EmailOuterClass.Email emailProto = emailProtoBuilder.build();
         EmailOuterClass.EmailRequest request = EmailOuterClass.EmailRequest.newBuilder().setEmail(emailProto).build();
         EmailOuterClass.EmailResponse response = blockingStub.enviarEmail(request);
-        System.out.println("Cliente: Enviando correo a:");
+        System.out.println("Enviando correo a: ");
         for (EmailOuterClass.Contacto destinatario : emailProto.getDestinatariosList()) {
             System.out.println(destinatario.getNombreCompleto() + " (" + destinatario.getEmail() + ")");
         }
@@ -54,10 +54,12 @@ public class EmailClient {
         asyncStub.recibirEmails(request, new StreamObserver<EmailOuterClass.Email>() {
             @Override
             public void onNext(EmailOuterClass.Email email) {
-                System.out.println("Cliente: Recibiendo correo...");
+                System.out.println("Usted tiene un correo pendiente:");
+                System.out.println("----------------------------------------");
                 System.out.println("Asunto: " + email.getAsunto());
                 System.out.println("  De: " + email.getRemitente().getNombreCompleto() + " (" + email.getRemitente().getEmail() + ")");
                 System.out.println("  Contenido: " + email.getContenido());
+                System.out.println("----------------------------------------");
             }
 
             @Override
@@ -75,7 +77,6 @@ public class EmailClient {
     public void shutdown() {
         if (channel != null && !channel.isShutdown()) {
             channel.shutdown();
-            System.out.println("El canal se cerro correctamente.");
         }
     }
 

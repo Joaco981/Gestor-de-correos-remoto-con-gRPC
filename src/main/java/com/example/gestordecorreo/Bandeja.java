@@ -1,6 +1,6 @@
 package com.example.gestordecorreo;
 import java.util.ArrayList;
-import  java.util.function.Predicate;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
@@ -9,14 +9,13 @@ public class Bandeja  {
     private ArrayList<Email> bandejaEnviados = new ArrayList<>();
 
   
-public ArrayList<Email> getBandejaEnviados(Contacto persona){
+public ArrayList<Email> getBandejaEnviados(){
     return bandejaEnviados;
 }
 
-public ArrayList<Email> getBandejaEntrada(Contacto persona){
+public ArrayList<Email> getBandejaEntrada(){
     return bandejaEntrada;
 }
-
 
 //metodos de filtros simples
 //se utiliza una lista de emails y un filtro (o condicion) que se aplica a cada email
@@ -53,10 +52,6 @@ public Predicate<Email> filtroPorDominio(String email){
     Predicate<Email> filtro= e -> e.getRemitente().getEmail().contains(email);
     return filtro; 
 }
-
- 
-
-
 
 
 }
