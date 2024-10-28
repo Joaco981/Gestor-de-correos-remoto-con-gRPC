@@ -1,12 +1,11 @@
 package email;
 
-import email.EmailOuterClass;
-import email.EmailServiceGrpc;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
-import java.util.UUID;  // Importar UUID
+import java.util.UUID;  
 
 public class EmailClient {
     private final ManagedChannel channel;
@@ -59,7 +58,6 @@ public class EmailClient {
     public static void main(String[] args) {
         EmailClient client = new EmailClient("localhost", 50051);
 
-        // Crear un único email para pruebas
         EmailOuterClass.Contacto remitente = EmailOuterClass.Contacto.newBuilder()
             .setNombreCompleto("Joaco Flores")
             .setEmail("joaco@gmail.com")
@@ -77,8 +75,31 @@ public class EmailClient {
             .build();
 
         client.sendEmail(email);
-        // Cambiar aquí
-        client.receiveEmails(); // Sin parámetros
+        client.receiveEmails(); 
         client.shutdown();
-    }
+
+        //segundo email
+        EmailClient client2 = new EmailClient("localhost", 50051);
+
+        EmailOuterClass.Contacto remitente1 = EmailOuterClass.Contacto.newBuilder()
+            .setNombreCompleto("Joaco Flores")
+            .setEmail("joaco@gmail.com")
+            .build();
+        EmailOuterClass.Contacto destinatario1 = EmailOuterClass.Contacto.newBuilder()
+            .setNombreCompleto("Carla Marturet")
+            .setEmail("carla@gmail.com")
+            .build();
+        EmailOuterClass.Email email2 = EmailOuterClass.Email.newBuilder()
+            .setId(UUID.randomUUID().toString())
+            .setAsunto("Prueba otro email")
+            .setContenido("Esto es un segundo email de prueba")
+            .setRemitente(remitente1)
+            .addDestinatarios(destinatario1)
+            .build();
+
+        client2.sendEmail(email2);
+        client2.receiveEmails(); 
+        client2.shutdown();
+            
+            }
 }

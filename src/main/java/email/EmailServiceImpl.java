@@ -1,7 +1,5 @@
 package email;
 
-import email.EmailOuterClass;
-import email.EmailServiceGrpc;
 import io.grpc.stub.StreamObserver;
 
 import java.util.ArrayList;
@@ -14,10 +12,8 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
     public void sendEmail(EmailOuterClass.EmailRequest request, StreamObserver<EmailOuterClass.EmailResponse> responseObserver) {
         EmailOuterClass.Email email = request.getEmail();
         
-        // Agrega esta línea para depuración
         System.out.println("Recibiendo correo de: " + email.getRemitente().getNombreCompleto() + " - Asunto: " + email.getAsunto());
         
-        // Verificar si el correo ya fue enviado
         for (EmailOuterClass.Email storedEmail : emailStorage) {
             if (storedEmail.getId().equals(email.getId())) {
                 responseObserver.onNext(EmailOuterClass.EmailResponse.newBuilder()
@@ -43,7 +39,6 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
 
     @Override
     public void receiveEmails(EmailOuterClass.ReceiveRequest request, StreamObserver<EmailOuterClass.Email> responseObserver) {
-        // Enviar todos los correos almacenados
         for (EmailOuterClass.Email storedEmail : emailStorage) {
             responseObserver.onNext(storedEmail);
         }
