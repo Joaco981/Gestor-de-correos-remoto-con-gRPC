@@ -417,7 +417,6 @@ public final class EmailOuterClass {
       return true;
     }
 
-    @SuppressWarnings("unchecked")
     @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
@@ -3309,6 +3308,36 @@ public final class EmailOuterClass {
      */
     com.google.protobuf.ByteString
         getEmailBytes();
+
+    /**
+     * <pre>
+     * Nuevo campo para identificar al cliente
+     * </pre>
+     *
+     * <code>string clientId = 2;</code>
+     * @return The clientId.
+     */
+    java.lang.String getClientId();
+    /**
+     * <pre>
+     * Nuevo campo para identificar al cliente
+     * </pre>
+     *
+     * <code>string clientId = 2;</code>
+     * @return The bytes for clientId.
+     */
+    com.google.protobuf.ByteString
+        getClientIdBytes();
+
+    /**
+     * <pre>
+     * Índice del último correo recibido
+     * </pre>
+     *
+     * <code>int32 lastReceivedIndex = 3;</code>
+     * @return The lastReceivedIndex.
+     */
+    int getLastReceivedIndex();
   }
   /**
    * Protobuf type {@code email.ReceiveRequest}
@@ -3333,6 +3362,7 @@ public final class EmailOuterClass {
     }
     private ReceiveRequest() {
       email_ = "";
+      clientId_ = "";
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -3395,6 +3425,68 @@ public final class EmailOuterClass {
       }
     }
 
+    public static final int CLIENTID_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object clientId_ = "";
+    /**
+     * <pre>
+     * Nuevo campo para identificar al cliente
+     * </pre>
+     *
+     * <code>string clientId = 2;</code>
+     * @return The clientId.
+     */
+    @java.lang.Override
+    public java.lang.String getClientId() {
+      java.lang.Object ref = clientId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        clientId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Nuevo campo para identificar al cliente
+     * </pre>
+     *
+     * <code>string clientId = 2;</code>
+     * @return The bytes for clientId.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getClientIdBytes() {
+      java.lang.Object ref = clientId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        clientId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LASTRECEIVEDINDEX_FIELD_NUMBER = 3;
+    private int lastReceivedIndex_ = 0;
+    /**
+     * <pre>
+     * Índice del último correo recibido
+     * </pre>
+     *
+     * <code>int32 lastReceivedIndex = 3;</code>
+     * @return The lastReceivedIndex.
+     */
+    @java.lang.Override
+    public int getLastReceivedIndex() {
+      return lastReceivedIndex_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3412,6 +3504,12 @@ public final class EmailOuterClass {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(email_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1, email_);
       }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientId_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, clientId_);
+      }
+      if (lastReceivedIndex_ != 0) {
+        output.writeInt32(3, lastReceivedIndex_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -3423,6 +3521,13 @@ public final class EmailOuterClass {
       size = 0;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(email_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1, email_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientId_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, clientId_);
+      }
+      if (lastReceivedIndex_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, lastReceivedIndex_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -3441,6 +3546,10 @@ public final class EmailOuterClass {
 
       if (!getEmail()
           .equals(other.getEmail())) return false;
+      if (!getClientId()
+          .equals(other.getClientId())) return false;
+      if (getLastReceivedIndex()
+          != other.getLastReceivedIndex()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -3454,6 +3563,10 @@ public final class EmailOuterClass {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + EMAIL_FIELD_NUMBER;
       hash = (53 * hash) + getEmail().hashCode();
+      hash = (37 * hash) + CLIENTID_FIELD_NUMBER;
+      hash = (53 * hash) + getClientId().hashCode();
+      hash = (37 * hash) + LASTRECEIVEDINDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getLastReceivedIndex();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3586,6 +3699,8 @@ public final class EmailOuterClass {
         super.clear();
         bitField0_ = 0;
         email_ = "";
+        clientId_ = "";
+        lastReceivedIndex_ = 0;
         return this;
       }
 
@@ -3622,6 +3737,12 @@ public final class EmailOuterClass {
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.email_ = email_;
         }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.clientId_ = clientId_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.lastReceivedIndex_ = lastReceivedIndex_;
+        }
       }
 
       @java.lang.Override
@@ -3640,6 +3761,14 @@ public final class EmailOuterClass {
           email_ = other.email_;
           bitField0_ |= 0x00000001;
           onChanged();
+        }
+        if (!other.getClientId().isEmpty()) {
+          clientId_ = other.clientId_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getLastReceivedIndex() != 0) {
+          setLastReceivedIndex(other.getLastReceivedIndex());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -3672,6 +3801,16 @@ public final class EmailOuterClass {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
+              case 18: {
+                clientId_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                lastReceivedIndex_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -3781,6 +3920,142 @@ public final class EmailOuterClass {
         return this;
       }
 
+      private java.lang.Object clientId_ = "";
+      /**
+       * <pre>
+       * Nuevo campo para identificar al cliente
+       * </pre>
+       *
+       * <code>string clientId = 2;</code>
+       * @return The clientId.
+       */
+      public java.lang.String getClientId() {
+        java.lang.Object ref = clientId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          clientId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Nuevo campo para identificar al cliente
+       * </pre>
+       *
+       * <code>string clientId = 2;</code>
+       * @return The bytes for clientId.
+       */
+      public com.google.protobuf.ByteString
+          getClientIdBytes() {
+        java.lang.Object ref = clientId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          clientId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Nuevo campo para identificar al cliente
+       * </pre>
+       *
+       * <code>string clientId = 2;</code>
+       * @param value The clientId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClientId(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        clientId_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Nuevo campo para identificar al cliente
+       * </pre>
+       *
+       * <code>string clientId = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClientId() {
+        clientId_ = getDefaultInstance().getClientId();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Nuevo campo para identificar al cliente
+       * </pre>
+       *
+       * <code>string clientId = 2;</code>
+       * @param value The bytes for clientId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClientIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        clientId_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private int lastReceivedIndex_ ;
+      /**
+       * <pre>
+       * Índice del último correo recibido
+       * </pre>
+       *
+       * <code>int32 lastReceivedIndex = 3;</code>
+       * @return The lastReceivedIndex.
+       */
+      @java.lang.Override
+      public int getLastReceivedIndex() {
+        return lastReceivedIndex_;
+      }
+      /**
+       * <pre>
+       * Índice del último correo recibido
+       * </pre>
+       *
+       * <code>int32 lastReceivedIndex = 3;</code>
+       * @param value The lastReceivedIndex to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLastReceivedIndex(int value) {
+
+        lastReceivedIndex_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Índice del último correo recibido
+       * </pre>
+       *
+       * <code>int32 lastReceivedIndex = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLastReceivedIndex() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        lastReceivedIndex_ = 0;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:email.ReceiveRequest)
     }
 
@@ -3874,11 +4149,12 @@ public final class EmailOuterClass {
       "eto\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\"+\n\014EmailRequest" +
       "\022\033\n\005email\030\001 \001(\0132\014.email.Email\"1\n\rEmailRe" +
       "sponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t" +
-      "\"\037\n\016ReceiveRequest\022\r\n\005email\030\001 \001(\t2~\n\014Ema" +
-      "ilService\0226\n\tSendEmail\022\023.email.EmailRequ" +
-      "est\032\024.email.EmailResponse\0226\n\rReceiveEmai" +
-      "ls\022\025.email.ReceiveRequest\032\014.email.Email0" +
-      "\001b\006proto3"
+      "\"L\n\016ReceiveRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010cli" +
+      "entId\030\002 \001(\t\022\031\n\021lastReceivedIndex\030\003 \001(\0052\200" +
+      "\001\n\014EmailService\0228\n\013EnviarEmail\022\023.email.E" +
+      "mailRequest\032\024.email.EmailResponse\0226\n\rRec" +
+      "ibirEmails\022\025.email.ReceiveRequest\032\014.emai" +
+      "l.Email0\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3913,7 +4189,7 @@ public final class EmailOuterClass {
     internal_static_email_ReceiveRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_email_ReceiveRequest_descriptor,
-        new java.lang.String[] { "Email", });
+        new java.lang.String[] { "Email", "ClientId", "LastReceivedIndex", });
     descriptor.resolveAllFeaturesImmutable();
   }
 

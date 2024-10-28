@@ -1,11 +1,10 @@
 package email;
 
-
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
-import java.util.UUID;  
+import java.util.UUID;
 
 public class EmailClient {
     private final ManagedChannel channel;
@@ -20,17 +19,22 @@ public class EmailClient {
         asyncStub = EmailServiceGrpc.newStub(channel);
     }
 
-    public void sendEmail(EmailOuterClass.Email email) {
+    public void enviarEmail(EmailOuterClass.Email email) {
         EmailOuterClass.EmailRequest request = EmailOuterClass.EmailRequest.newBuilder().setEmail(email).build();
-        EmailOuterClass.EmailResponse response = blockingStub.sendEmail(request);
+        EmailOuterClass.EmailResponse response = blockingStub.enviarEmail(request);
+        System.out.println("Cliente: Enviando correo a:");
+        for (EmailOuterClass.Contacto destinatario : email.getDestinatariosList()) {
+            System.out.println(destinatario.getNombreCompleto() + " (" + destinatario.getEmail() + ")");
+        }
         System.out.println(response.getMessage());
     }
 
-    public void receiveEmails() {
+    public void recibirEmails() {
         EmailOuterClass.ReceiveRequest request = EmailOuterClass.ReceiveRequest.newBuilder().build(); // Crear la solicitud vacía
-        asyncStub.receiveEmails(request, new StreamObserver<EmailOuterClass.Email>() {
+        asyncStub.recibirEmails(request, new StreamObserver<EmailOuterClass.Email>() {
             @Override
             public void onNext(EmailOuterClass.Email email) {
+                System.out.println("Cliente: Recibiendo correo...");
                 System.out.println("Asunto: " + email.getAsunto());
                 System.out.println("  De: " + email.getRemitente().getNombreCompleto() + " (" + email.getRemitente().getEmail() + ")");
                 System.out.println("  Contenido: " + email.getContenido());
@@ -56,50 +60,41 @@ public class EmailClient {
     }
 
     public static void main(String[] args) {
+        if (args.length < 1) {
+            System.out.println("Uso: java EmailClient <send|receive>");
+            return;
+        }
+
+        String mode = args[0];
         EmailClient client = new EmailClient("localhost", 50051);
 
-        EmailOuterClass.Contacto remitente = EmailOuterClass.Contacto.newBuilder()
-            .setNombreCompleto("Joaco Flores")
-            .setEmail("joaco@gmail.com")
-            .build();
-        EmailOuterClass.Contacto destinatario = EmailOuterClass.Contacto.newBuilder()
-            .setNombreCompleto("Cande Cano")
-            .setEmail("cande@gmail.com")
-            .build();
-        EmailOuterClass.Email email = EmailOuterClass.Email.newBuilder()
-            .setId(UUID.randomUUID().toString())
-            .setAsunto("Hola")
-            .setContenido("Esto es un email de prueba")
-            .setRemitente(remitente)
-            .addDestinatarios(destinatario)
-            .build();
+        if (mode.equals("send")) {
+            EmailOuterClass.Contacto remitente = EmailOuterClass.Contacto.newBuilder()
+                .setNombreCompleto("Joaco Flores")
+                .setEmail("joaco@gmail.com")
+                .build();
+            EmailOuterClass.Contacto destinatario = EmailOuterClass.Contacto.newBuilder()
+                .setNombreCompleto("Cande Cano")
+                .setEmail("cande@gmail.com")
+                .build();
+            EmailOuterClass.Contacto destinatario2 = EmailOuterClass.Contacto.newBuilder()
+                .setNombreCompleto("Carla Marturet")
+                .setEmail("carla@gmail.com")
+                .build();    
+            EmailOuterClass.Email email = EmailOuterClass.Email.newBuilder()
+                .setId(UUID.randomUUID().toString())
+                .setAsunto("Hola")
+                .setContenido("Esto es un email de prueba")
+                .setRemitente(remitente)
+                .addDestinatarios(destinatario)
+                .addDestinatarios(destinatario2)
+                .build();
 
-        client.sendEmail(email);
-        client.receiveEmails(); 
+            client.enviarEmail(email);
+        } else if (mode.equals("receive")) {
+            client.recibirEmails();
+        }
+
         client.shutdown();
-
-        //segundo email
-        EmailClient client2 = new EmailClient("localhost", 50051);
-
-        EmailOuterClass.Contacto remitente1 = EmailOuterClass.Contacto.newBuilder()
-            .setNombreCompleto("Joaco Flores")
-            .setEmail("joaco@gmail.com")
-            .build();
-        EmailOuterClass.Contacto destinatario1 = EmailOuterClass.Contacto.newBuilder()
-            .setNombreCompleto("Carla Marturet")
-            .setEmail("carla@gmail.com")
-            .build();
-        EmailOuterClass.Email email2 = EmailOuterClass.Email.newBuilder()
-            .setId(UUID.randomUUID().toString())
-            .setAsunto("Prueba otro email")
-            .setContenido("Esto es un segundo email de prueba")
-            .setRemitente(remitente1)
-            .addDestinatarios(destinatario1)
-            .build();
-
-        client2.sendEmail(email2);
-        client2.receiveEmails(); 
-        client2.shutdown();
-            
-            }
+    }
 }

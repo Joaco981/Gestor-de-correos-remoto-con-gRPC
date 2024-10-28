@@ -5,8 +5,8 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.60.2)",
-    comments = "Source: email.proto")
+    value = "by gRPC proto compiler (version 1.68.0)",
+    comments = "Source: src/main/java/proto/email.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class EmailServiceGrpc {
 
@@ -16,65 +16,65 @@ public final class EmailServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<email.EmailOuterClass.EmailRequest,
-      email.EmailOuterClass.EmailResponse> getSendEmailMethod;
+      email.EmailOuterClass.EmailResponse> getEnviarEmailMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "SendEmail",
+      fullMethodName = SERVICE_NAME + '/' + "EnviarEmail",
       requestType = email.EmailOuterClass.EmailRequest.class,
       responseType = email.EmailOuterClass.EmailResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<email.EmailOuterClass.EmailRequest,
-      email.EmailOuterClass.EmailResponse> getSendEmailMethod() {
-    io.grpc.MethodDescriptor<email.EmailOuterClass.EmailRequest, email.EmailOuterClass.EmailResponse> getSendEmailMethod;
-    if ((getSendEmailMethod = EmailServiceGrpc.getSendEmailMethod) == null) {
+      email.EmailOuterClass.EmailResponse> getEnviarEmailMethod() {
+    io.grpc.MethodDescriptor<email.EmailOuterClass.EmailRequest, email.EmailOuterClass.EmailResponse> getEnviarEmailMethod;
+    if ((getEnviarEmailMethod = EmailServiceGrpc.getEnviarEmailMethod) == null) {
       synchronized (EmailServiceGrpc.class) {
-        if ((getSendEmailMethod = EmailServiceGrpc.getSendEmailMethod) == null) {
-          EmailServiceGrpc.getSendEmailMethod = getSendEmailMethod =
+        if ((getEnviarEmailMethod = EmailServiceGrpc.getEnviarEmailMethod) == null) {
+          EmailServiceGrpc.getEnviarEmailMethod = getEnviarEmailMethod =
               io.grpc.MethodDescriptor.<email.EmailOuterClass.EmailRequest, email.EmailOuterClass.EmailResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SendEmail"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "EnviarEmail"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   email.EmailOuterClass.EmailRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   email.EmailOuterClass.EmailResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new EmailServiceMethodDescriptorSupplier("SendEmail"))
+              .setSchemaDescriptor(new EmailServiceMethodDescriptorSupplier("EnviarEmail"))
               .build();
         }
       }
     }
-    return getSendEmailMethod;
+    return getEnviarEmailMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<email.EmailOuterClass.ReceiveRequest,
-      email.EmailOuterClass.Email> getReceiveEmailsMethod;
+      email.EmailOuterClass.Email> getRecibirEmailsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "ReceiveEmails",
+      fullMethodName = SERVICE_NAME + '/' + "RecibirEmails",
       requestType = email.EmailOuterClass.ReceiveRequest.class,
       responseType = email.EmailOuterClass.Email.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<email.EmailOuterClass.ReceiveRequest,
-      email.EmailOuterClass.Email> getReceiveEmailsMethod() {
-    io.grpc.MethodDescriptor<email.EmailOuterClass.ReceiveRequest, email.EmailOuterClass.Email> getReceiveEmailsMethod;
-    if ((getReceiveEmailsMethod = EmailServiceGrpc.getReceiveEmailsMethod) == null) {
+      email.EmailOuterClass.Email> getRecibirEmailsMethod() {
+    io.grpc.MethodDescriptor<email.EmailOuterClass.ReceiveRequest, email.EmailOuterClass.Email> getRecibirEmailsMethod;
+    if ((getRecibirEmailsMethod = EmailServiceGrpc.getRecibirEmailsMethod) == null) {
       synchronized (EmailServiceGrpc.class) {
-        if ((getReceiveEmailsMethod = EmailServiceGrpc.getReceiveEmailsMethod) == null) {
-          EmailServiceGrpc.getReceiveEmailsMethod = getReceiveEmailsMethod =
+        if ((getRecibirEmailsMethod = EmailServiceGrpc.getRecibirEmailsMethod) == null) {
+          EmailServiceGrpc.getRecibirEmailsMethod = getRecibirEmailsMethod =
               io.grpc.MethodDescriptor.<email.EmailOuterClass.ReceiveRequest, email.EmailOuterClass.Email>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ReceiveEmails"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RecibirEmails"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   email.EmailOuterClass.ReceiveRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   email.EmailOuterClass.Email.getDefaultInstance()))
-              .setSchemaDescriptor(new EmailServiceMethodDescriptorSupplier("ReceiveEmails"))
+              .setSchemaDescriptor(new EmailServiceMethodDescriptorSupplier("RecibirEmails"))
               .build();
         }
       }
     }
-    return getReceiveEmailsMethod;
+    return getRecibirEmailsMethod;
   }
 
   /**
@@ -127,16 +127,16 @@ public final class EmailServiceGrpc {
 
     /**
      */
-    default void sendEmail(email.EmailOuterClass.EmailRequest request,
+    default void enviarEmail(email.EmailOuterClass.EmailRequest request,
         io.grpc.stub.StreamObserver<email.EmailOuterClass.EmailResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSendEmailMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEnviarEmailMethod(), responseObserver);
     }
 
     /**
      */
-    default void receiveEmails(email.EmailOuterClass.ReceiveRequest request,
+    default void recibirEmails(email.EmailOuterClass.ReceiveRequest request,
         io.grpc.stub.StreamObserver<email.EmailOuterClass.Email> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReceiveEmailsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRecibirEmailsMethod(), responseObserver);
     }
   }
 
@@ -169,18 +169,18 @@ public final class EmailServiceGrpc {
 
     /**
      */
-    public void sendEmail(email.EmailOuterClass.EmailRequest request,
+    public void enviarEmail(email.EmailOuterClass.EmailRequest request,
         io.grpc.stub.StreamObserver<email.EmailOuterClass.EmailResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getSendEmailMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getEnviarEmailMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void receiveEmails(email.EmailOuterClass.ReceiveRequest request,
+    public void recibirEmails(email.EmailOuterClass.ReceiveRequest request,
         io.grpc.stub.StreamObserver<email.EmailOuterClass.Email> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
-          getChannel().newCall(getReceiveEmailsMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRecibirEmailsMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -202,17 +202,17 @@ public final class EmailServiceGrpc {
 
     /**
      */
-    public email.EmailOuterClass.EmailResponse sendEmail(email.EmailOuterClass.EmailRequest request) {
+    public email.EmailOuterClass.EmailResponse enviarEmail(email.EmailOuterClass.EmailRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getSendEmailMethod(), getCallOptions(), request);
+          getChannel(), getEnviarEmailMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<email.EmailOuterClass.Email> receiveEmails(
+    public java.util.Iterator<email.EmailOuterClass.Email> recibirEmails(
         email.EmailOuterClass.ReceiveRequest request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
-          getChannel(), getReceiveEmailsMethod(), getCallOptions(), request);
+          getChannel(), getRecibirEmailsMethod(), getCallOptions(), request);
     }
   }
 
@@ -234,15 +234,15 @@ public final class EmailServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<email.EmailOuterClass.EmailResponse> sendEmail(
+    public com.google.common.util.concurrent.ListenableFuture<email.EmailOuterClass.EmailResponse> enviarEmail(
         email.EmailOuterClass.EmailRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getSendEmailMethod(), getCallOptions()), request);
+          getChannel().newCall(getEnviarEmailMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_SEND_EMAIL = 0;
-  private static final int METHODID_RECEIVE_EMAILS = 1;
+  private static final int METHODID_ENVIAR_EMAIL = 0;
+  private static final int METHODID_RECIBIR_EMAILS = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -261,12 +261,12 @@ public final class EmailServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_SEND_EMAIL:
-          serviceImpl.sendEmail((email.EmailOuterClass.EmailRequest) request,
+        case METHODID_ENVIAR_EMAIL:
+          serviceImpl.enviarEmail((email.EmailOuterClass.EmailRequest) request,
               (io.grpc.stub.StreamObserver<email.EmailOuterClass.EmailResponse>) responseObserver);
           break;
-        case METHODID_RECEIVE_EMAILS:
-          serviceImpl.receiveEmails((email.EmailOuterClass.ReceiveRequest) request,
+        case METHODID_RECIBIR_EMAILS:
+          serviceImpl.recibirEmails((email.EmailOuterClass.ReceiveRequest) request,
               (io.grpc.stub.StreamObserver<email.EmailOuterClass.Email>) responseObserver);
           break;
         default:
@@ -288,19 +288,19 @@ public final class EmailServiceGrpc {
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
         .addMethod(
-          getSendEmailMethod(),
+          getEnviarEmailMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               email.EmailOuterClass.EmailRequest,
               email.EmailOuterClass.EmailResponse>(
-                service, METHODID_SEND_EMAIL)))
+                service, METHODID_ENVIAR_EMAIL)))
         .addMethod(
-          getReceiveEmailsMethod(),
+          getRecibirEmailsMethod(),
           io.grpc.stub.ServerCalls.asyncServerStreamingCall(
             new MethodHandlers<
               email.EmailOuterClass.ReceiveRequest,
               email.EmailOuterClass.Email>(
-                service, METHODID_RECEIVE_EMAILS)))
+                service, METHODID_RECIBIR_EMAILS)))
         .build();
   }
 
@@ -349,8 +349,8 @@ public final class EmailServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new EmailServiceFileDescriptorSupplier())
-              .addMethod(getSendEmailMethod())
-              .addMethod(getReceiveEmailsMethod())
+              .addMethod(getEnviarEmailMethod())
+              .addMethod(getRecibirEmailsMethod())
               .build();
         }
       }

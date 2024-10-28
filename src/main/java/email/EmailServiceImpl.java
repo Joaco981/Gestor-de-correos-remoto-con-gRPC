@@ -1,15 +1,14 @@
 package email;
 
 import io.grpc.stub.StreamObserver;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
     private List<EmailOuterClass.Email> emailStorage = new ArrayList<>();
-
+    
     @Override
-    public void sendEmail(EmailOuterClass.EmailRequest request, StreamObserver<EmailOuterClass.EmailResponse> responseObserver) {
+    public void enviarEmail(EmailOuterClass.EmailRequest request, StreamObserver<EmailOuterClass.EmailResponse> responseObserver) {
         EmailOuterClass.Email email = request.getEmail();
         
         System.out.println("Recibiendo correo de: " + email.getRemitente().getNombreCompleto() + " - Asunto: " + email.getAsunto());
@@ -36,12 +35,14 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
         responseObserver.onCompleted();
     }
 
-
     @Override
-    public void receiveEmails(EmailOuterClass.ReceiveRequest request, StreamObserver<EmailOuterClass.Email> responseObserver) {
-        for (EmailOuterClass.Email storedEmail : emailStorage) {
-            responseObserver.onNext(storedEmail);
+    public void recibirEmails(EmailOuterClass.ReceiveRequest request, StreamObserver<EmailOuterClass.Email> responseObserver) {
+        int lastIndex = request.getLastReceivedIndex();  // Obtenemos el índice del último correo recibido
+        
+        for (int i = lastIndex; i < emailStorage.size(); i++) {
+            responseObserver.onNext(emailStorage.get(i));  
         }
         responseObserver.onCompleted();
     }
+    
 }

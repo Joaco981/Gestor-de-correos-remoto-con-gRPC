@@ -3,8 +3,8 @@ syntax = "proto3";
 package email;
 
 service EmailService {
-    rpc SendEmail (EmailRequest) returns (EmailResponse);
-    rpc ReceiveEmails (ReceiveRequest) returns (stream Email);
+    rpc EnviarEmail (EmailRequest) returns (EmailResponse);
+    rpc RecibirEmails (ReceiveRequest) returns (stream Email);
 }
 
 message Email {
@@ -32,4 +32,6 @@ message EmailResponse {
 
 message ReceiveRequest {
     string email = 1; // Dirección de correo para recibir correos
+    string clientId = 2;  // Nuevo campo para identificar al cliente
+    int32 lastReceivedIndex = 3;  // Índice del último correo recibido
 }
