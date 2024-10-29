@@ -3,14 +3,16 @@ import java.util.ArrayList;
 //email manager es el encargado de gestionar los correos creados
 public class EmailManager {
     
-    //se envia y se recibe el email
+    // Se envía y se recibe el email
     public void enviarEmail(Email email) {
-    Email emailClonado = email.clonarEmail();
+        // Agregar el correo a la bandeja de enviados del remitente
+        email.getRemitente().bandeja.getBandejaEnviados().add(email);
+        System.out.println("Correo enviado de " + email.getRemitente().getNombre() + " a:");
 
-    emailClonado.getRemitente().bandeja.getBandejaEnviados().add(emailClonado);
-
+        // Agregar el correo a la bandeja de entrada de los destinatarios
         for (Contacto destinatario : email.getDestinatarios()) {
-             destinatario.bandeja.getBandejaEntrada().add(emailClonado);
+            destinatario.bandeja.getBandejaEntrada().add(email);
+            System.out.println("- " + destinatario.getNombre());
         }
     }
 

@@ -50,7 +50,7 @@ public class EmailClient {
     }
 
     public void recibirEmails() {
-        EmailOuterClass.ReceiveRequest request = EmailOuterClass.ReceiveRequest.newBuilder().build(); // Crear la solicitud vacía
+        EmailOuterClass.ReceiveRequest request = EmailOuterClass.ReceiveRequest.newBuilder().build();
         asyncStub.recibirEmails(request, new StreamObserver<EmailOuterClass.Email>() {
             @Override
             public void onNext(EmailOuterClass.Email email) {
@@ -61,18 +61,20 @@ public class EmailClient {
                 System.out.println("  Contenido: " + email.getContenido());
                 System.out.println("----------------------------------------");
             }
-
+    
             @Override
             public void onError(Throwable t) {
+                System.err.println("Error al recibir correos: " + t.getMessage());
                 t.printStackTrace();
             }
-
+    
             @Override
             public void onCompleted() {
                 System.out.println("Se recibieron todos los emails!");
             }
         });
     }
+    
 
     public void shutdown() {
         if (channel != null && !channel.isShutdown()) {

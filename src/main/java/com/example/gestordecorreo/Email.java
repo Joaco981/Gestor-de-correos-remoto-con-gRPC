@@ -44,19 +44,19 @@ public class Email  {
         destinatarios.add(valor);
     }
 
-    public Email clonarEmail() {
-        Email correonuevo = new Email();      
-
-        correonuevo.setContenido(this.getContenido());
-        correonuevo.setAsunto(this.getAsunto());
-        correonuevo.setRemitente(this.getRemitente());
-        
-        for (Contacto destinatario : this.getDestinatarios()) {
-            correonuevo.agregarDestinatario(destinatario);
-        }
-        
-        return correonuevo;
-    }
+    //public Email clonarEmail() {
+    //    Email correonuevo = new Email();      
+    //
+    //    correonuevo.setContenido(this.getContenido());
+    //    correonuevo.setAsunto(this.getAsunto());
+    //    correonuevo.setRemitente(this.getRemitente());
+    //    
+    //    for (Contacto destinatario : this.getDestinatarios()) {
+    //        correonuevo.agregarDestinatario(destinatario);
+    //    }
+    //    
+    //    return correonuevo;
+    //}
 
    
     
