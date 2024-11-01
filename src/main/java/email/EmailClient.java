@@ -91,7 +91,7 @@ public class EmailClient {
         String mode = args[0];
         EmailClient client = new EmailClient("localhost", 50051);
 
-        if (mode.equals("send")) {
+        if (mode.equals("enviar")) {
             Contacto remitente = new Contacto("Joaco Flores", "joaco@gmail.com");
             Contacto destinatario = new Contacto("Cande Cano", "cande@gmail.com");
             Contacto destinatario2 = new Contacto("Carla Marturet", "carla@gmail.com");
@@ -104,7 +104,7 @@ public class EmailClient {
             email.agregarDestinatario(destinatario2);
 
             client.enviarEmail(email);
-        } else if (mode.equals("receive")) {
+        } else if (mode.equals("recibir")) {
             client.recibirEmails();
         }
 
