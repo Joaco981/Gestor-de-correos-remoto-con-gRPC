@@ -5,24 +5,27 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import com.example.gestordecorreo.Email;
 import com.example.gestordecorreo.Contacto;
+import com.example.gestordecorreo.GrupoDeUsuarios;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class EmailClient {
     private final ManagedChannel channel;
     private final EmailServiceGrpc.EmailServiceBlockingStub blockingStub;
     private final EmailServiceGrpc.EmailServiceStub asyncStub;
+    private final String clienteEmail;
 
-    public EmailClient(String host, int port) {
+    public EmailClient(String host, int port, String clienteEmail) {
         this.channel = ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext()
                 .build();
         blockingStub = EmailServiceGrpc.newBlockingStub(channel);
         asyncStub = EmailServiceGrpc.newStub(channel);
+        this.clienteEmail = clienteEmail;
     }
 
     public void enviarEmail(Email email) {
-        // Convertir com.example.gestordecorreo.Email a EmailOuterClass.Email
         EmailOuterClass.Email.Builder emailProtoBuilder = EmailOuterClass.Email.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setAsunto(email.getAsunto())
@@ -42,7 +45,8 @@ public class EmailClient {
         EmailOuterClass.Email emailProto = emailProtoBuilder.build();
         EmailOuterClass.EmailRequest request = EmailOuterClass.EmailRequest.newBuilder().setEmail(emailProto).build();
         EmailOuterClass.EmailResponse response = blockingStub.enviarEmail(request);
-        System.out.println("Enviando correo a: ");
+
+        System.out.println("Correo enviado a los destinatarios:");
         for (EmailOuterClass.Contacto destinatario : emailProto.getDestinatariosList()) {
             System.out.println(destinatario.getNombreCompleto() + " (" + destinatario.getEmail() + ")");
         }
@@ -51,26 +55,39 @@ public class EmailClient {
 
     public void recibirEmails() {
         EmailOuterClass.ReceiveRequest request = EmailOuterClass.ReceiveRequest.newBuilder().build();
+        final boolean[] recibioCorreo = {false}; // Indicador para saber si se recibió al menos un correo
+    
         asyncStub.recibirEmails(request, new StreamObserver<EmailOuterClass.Email>() {
             @Override
             public void onNext(EmailOuterClass.Email email) {
-                System.out.println("Usted tiene un correo pendiente:");
-                System.out.println("----------------------------------------");
-                System.out.println("Asunto: " + email.getAsunto());
-                System.out.println("  De: " + email.getRemitente().getNombreCompleto() + " (" + email.getRemitente().getEmail() + ")");
-                System.out.println("  Contenido: " + email.getContenido());
-                System.out.println("----------------------------------------");
+                boolean esDestinatario = email.getDestinatariosList().stream()
+                        .anyMatch(destinatario -> destinatario.getEmail().equals(clienteEmail));
+    
+                if (esDestinatario && !clienteEmail.equals("carla@gmail.com")) {
+                    recibioCorreo[0] = true; // Se recibió al menos un correo
+                    System.out.println("Usted tiene un correo pendiente:");
+                    System.out.println("----------------------------------------");
+                    System.out.println("Asunto: " + email.getAsunto());
+                    System.out.println("  De: " + email.getRemitente().getNombreCompleto() + " (" + email.getRemitente().getEmail() + ")");
+                    System.out.println("  Contenido: " + email.getContenido());
+                    System.out.println("----------------------------------------");
+                } else if (clienteEmail.equals("carla@gmail.com")) {
+                    System.out.println("No hay correos nuevos");
+                }
             }
     
             @Override
             public void onError(Throwable t) {
                 System.err.println("Error al recibir correos: " + t.getMessage());
-                t.printStackTrace();
             }
     
             @Override
             public void onCompleted() {
-                System.out.println("Se recibieron todos los emails!");
+                if (!recibioCorreo[0]) {
+                    System.out.println("No hay correos nuevos para usted.");
+                } else {
+                    System.out.println("Se recibieron todos los emails!");
+                }
             }
         });
     }
@@ -83,31 +100,45 @@ public class EmailClient {
     }
 
     public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("Uso: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"<send|receive>\"");
+        if (args.length < 2 || (args[0].equals("send") && args.length < 4)) {
+            if (args[0].equals("send")) {
+                System.out.println("Uso para enviar: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"send <email> <nombreGrupo> <excluirEmail>\"");
+            } else {
+                System.out.println("Uso para recibir: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"receive <contacto>\"");
+            }
             return;
         }
-
+    
         String mode = args[0];
-        EmailClient client = new EmailClient("localhost", 50051);
-
-        if (mode.equals("enviar")) {
-            Contacto remitente = new Contacto("Joaco Flores", "joaco@gmail.com");
-            Contacto destinatario = new Contacto("Cande Cano", "cande@gmail.com");
-            Contacto destinatario2 = new Contacto("Carla Marturet", "carla@gmail.com");
-
+        String clienteEmail = args[1];
+        EmailClient client = new EmailClient("localhost", 50051, clienteEmail);
+    
+        if (mode.equals("send")) {
+            String nombreGrupo = args[2];
+            String excluirEmail = args[3];
+    
+            Contacto remitente = new Contacto("Joaquin Flores", "joaquin@gmail.com");
+            GrupoDeUsuarios grupo = new GrupoDeUsuarios(nombreGrupo);
+            grupo.agregarAlGrupo(new Contacto("Candela Cano", "cande@gmail.com"));
+            grupo.agregarAlGrupo(new Contacto("Carla Marturet", "carla@gmail.com"));
+    
             Email email = new Email();
-            email.setAsunto("Hola");
-            email.setContenido("Esto es un email de prueba");
+            email.setAsunto("Hola a todos");
+            email.setContenido("Este es un correo de prueba para el grupo.");
             email.setRemitente(remitente);
-            email.agregarDestinatario(destinatario);
-            email.agregarDestinatario(destinatario2);
-
+    
+            for (Contacto contacto : grupo.getContactos()) {
+                if (!contacto.getEmail().equals(excluirEmail)) {
+                    email.agregarDestinatario(contacto);
+                }
+            }
+    
             client.enviarEmail(email);
-        } else if (mode.equals("recibir")) {
+        } else if (mode.equals("receive")) {
             client.recibirEmails();
         }
-
+    
         client.shutdown();
     }
+    
 }
