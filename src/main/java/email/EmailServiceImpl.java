@@ -2,6 +2,8 @@ package email;
 
 import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import com.example.gestordecorreo.Email;
 import com.example.gestordecorreo.Contacto;
 
@@ -63,4 +65,52 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
         }
         responseObserver.onCompleted();
     }
+    @Override
+public void verBandeja(EmailOuterClass.BandejaRequest request, StreamObserver<EmailOuterClass.BandejaResponse> responseObserver) {
+    String clientEmail = request.getClientEmail();
+
+    // Obtener los emails de la bandeja de entrada del cliente
+    ArrayList<Email> bandejaEntradaCliente = obtenerBandejaEntradaPorEmail(clientEmail);
+
+    // Construir la respuesta
+    EmailOuterClass.BandejaResponse.Builder responseBuilder = EmailOuterClass.BandejaResponse.newBuilder();
+    for (Email email : bandejaEntradaCliente) {
+        EmailOuterClass.Email emailProto = EmailOuterClass.Email.newBuilder()
+                .setAsunto(email.getAsunto())
+                .setContenido(email.getContenido())
+                .setRemitente(EmailOuterClass.Contacto.newBuilder()
+                        .setNombreCompleto(email.getRemitente().getNombre())
+                        .setEmail(email.getRemitente().getEmail())
+                        .build())
+                .addAllDestinatarios(email.getDestinatarios().stream()
+                        .map(dest -> EmailOuterClass.Contacto.newBuilder()
+                                .setNombreCompleto(dest.getNombre())
+                                .setEmail(dest.getEmail())
+                                .build())
+                        .collect(Collectors.toList()))
+                .build();
+        responseBuilder.addBandejaEntrada(emailProto);
+    }
+
+    // Enviar la respuesta completa al cliente
+    responseObserver.onNext(responseBuilder.build());
+    responseObserver.onCompleted();
+}
+
+    // Método para obtener la bandeja de entrada del cliente (puedes adaptarlo según tu implementación)
+    // Método auxiliar para obtener la bandeja de entrada de un cliente específico
+    private ArrayList<Email> obtenerBandejaEntradaPorEmail(String clientEmail) {
+        // Aquí puedes personalizar la lógica para obtener la bandeja de entrada según tu estructura de datos
+        ArrayList<Email> bandejaDelCliente = new ArrayList<>();
+        for (Email email : bandejaEntrada) {
+            for (Contacto destinatario : email.getDestinatarios()) {
+                if (destinatario.getEmail().equals(clientEmail)) {
+                    bandejaDelCliente.add(email);
+                    break;
+                }
+            }
+        }
+        return bandejaDelCliente;
+    }
+
 }

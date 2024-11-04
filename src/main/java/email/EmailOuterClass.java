@@ -2651,29 +2651,17 @@ public final class EmailOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * Indica si el envío fue exitoso
-     * </pre>
-     *
      * <code>bool success = 1;</code>
      * @return The success.
      */
     boolean getSuccess();
 
     /**
-     * <pre>
-     * Mensaje de respuesta
-     * </pre>
-     *
      * <code>string message = 2;</code>
      * @return The message.
      */
     java.lang.String getMessage();
     /**
-     * <pre>
-     * Mensaje de respuesta
-     * </pre>
-     *
      * <code>string message = 2;</code>
      * @return The bytes for message.
      */
@@ -2721,10 +2709,6 @@ public final class EmailOuterClass {
     public static final int SUCCESS_FIELD_NUMBER = 1;
     private boolean success_ = false;
     /**
-     * <pre>
-     * Indica si el envío fue exitoso
-     * </pre>
-     *
      * <code>bool success = 1;</code>
      * @return The success.
      */
@@ -2737,10 +2721,6 @@ public final class EmailOuterClass {
     @SuppressWarnings("serial")
     private volatile java.lang.Object message_ = "";
     /**
-     * <pre>
-     * Mensaje de respuesta
-     * </pre>
-     *
      * <code>string message = 2;</code>
      * @return The message.
      */
@@ -2758,10 +2738,6 @@ public final class EmailOuterClass {
       }
     }
     /**
-     * <pre>
-     * Mensaje de respuesta
-     * </pre>
-     *
      * <code>string message = 2;</code>
      * @return The bytes for message.
      */
@@ -3100,10 +3076,6 @@ public final class EmailOuterClass {
 
       private boolean success_ ;
       /**
-       * <pre>
-       * Indica si el envío fue exitoso
-       * </pre>
-       *
        * <code>bool success = 1;</code>
        * @return The success.
        */
@@ -3112,10 +3084,6 @@ public final class EmailOuterClass {
         return success_;
       }
       /**
-       * <pre>
-       * Indica si el envío fue exitoso
-       * </pre>
-       *
        * <code>bool success = 1;</code>
        * @param value The success to set.
        * @return This builder for chaining.
@@ -3128,10 +3096,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Indica si el envío fue exitoso
-       * </pre>
-       *
        * <code>bool success = 1;</code>
        * @return This builder for chaining.
        */
@@ -3144,10 +3108,6 @@ public final class EmailOuterClass {
 
       private java.lang.Object message_ = "";
       /**
-       * <pre>
-       * Mensaje de respuesta
-       * </pre>
-       *
        * <code>string message = 2;</code>
        * @return The message.
        */
@@ -3164,10 +3124,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Mensaje de respuesta
-       * </pre>
-       *
        * <code>string message = 2;</code>
        * @return The bytes for message.
        */
@@ -3185,10 +3141,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Mensaje de respuesta
-       * </pre>
-       *
        * <code>string message = 2;</code>
        * @param value The message to set.
        * @return This builder for chaining.
@@ -3202,10 +3154,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Mensaje de respuesta
-       * </pre>
-       *
        * <code>string message = 2;</code>
        * @return This builder for chaining.
        */
@@ -3216,10 +3164,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Mensaje de respuesta
-       * </pre>
-       *
        * <code>string message = 2;</code>
        * @param value The bytes for message to set.
        * @return This builder for chaining.
@@ -3290,19 +3234,11 @@ public final class EmailOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * Dirección de correo para recibir correos
-     * </pre>
-     *
      * <code>string email = 1;</code>
      * @return The email.
      */
     java.lang.String getEmail();
     /**
-     * <pre>
-     * Dirección de correo para recibir correos
-     * </pre>
-     *
      * <code>string email = 1;</code>
      * @return The bytes for email.
      */
@@ -3310,19 +3246,11 @@ public final class EmailOuterClass {
         getEmailBytes();
 
     /**
-     * <pre>
-     * Nuevo campo para identificar al cliente
-     * </pre>
-     *
      * <code>string clientId = 2;</code>
      * @return The clientId.
      */
     java.lang.String getClientId();
     /**
-     * <pre>
-     * Nuevo campo para identificar al cliente
-     * </pre>
-     *
      * <code>string clientId = 2;</code>
      * @return The bytes for clientId.
      */
@@ -3330,10 +3258,6 @@ public final class EmailOuterClass {
         getClientIdBytes();
 
     /**
-     * <pre>
-     * Índice del último correo recibido
-     * </pre>
-     *
      * <code>int32 lastReceivedIndex = 3;</code>
      * @return The lastReceivedIndex.
      */
@@ -3382,10 +3306,6 @@ public final class EmailOuterClass {
     @SuppressWarnings("serial")
     private volatile java.lang.Object email_ = "";
     /**
-     * <pre>
-     * Dirección de correo para recibir correos
-     * </pre>
-     *
      * <code>string email = 1;</code>
      * @return The email.
      */
@@ -3403,10 +3323,6 @@ public final class EmailOuterClass {
       }
     }
     /**
-     * <pre>
-     * Dirección de correo para recibir correos
-     * </pre>
-     *
      * <code>string email = 1;</code>
      * @return The bytes for email.
      */
@@ -3429,10 +3345,6 @@ public final class EmailOuterClass {
     @SuppressWarnings("serial")
     private volatile java.lang.Object clientId_ = "";
     /**
-     * <pre>
-     * Nuevo campo para identificar al cliente
-     * </pre>
-     *
      * <code>string clientId = 2;</code>
      * @return The clientId.
      */
@@ -3450,10 +3362,6 @@ public final class EmailOuterClass {
       }
     }
     /**
-     * <pre>
-     * Nuevo campo para identificar al cliente
-     * </pre>
-     *
      * <code>string clientId = 2;</code>
      * @return The bytes for clientId.
      */
@@ -3475,10 +3383,6 @@ public final class EmailOuterClass {
     public static final int LASTRECEIVEDINDEX_FIELD_NUMBER = 3;
     private int lastReceivedIndex_ = 0;
     /**
-     * <pre>
-     * Índice del último correo recibido
-     * </pre>
-     *
      * <code>int32 lastReceivedIndex = 3;</code>
      * @return The lastReceivedIndex.
      */
@@ -3830,10 +3734,6 @@ public final class EmailOuterClass {
 
       private java.lang.Object email_ = "";
       /**
-       * <pre>
-       * Dirección de correo para recibir correos
-       * </pre>
-       *
        * <code>string email = 1;</code>
        * @return The email.
        */
@@ -3850,10 +3750,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Dirección de correo para recibir correos
-       * </pre>
-       *
        * <code>string email = 1;</code>
        * @return The bytes for email.
        */
@@ -3871,10 +3767,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Dirección de correo para recibir correos
-       * </pre>
-       *
        * <code>string email = 1;</code>
        * @param value The email to set.
        * @return This builder for chaining.
@@ -3888,10 +3780,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Dirección de correo para recibir correos
-       * </pre>
-       *
        * <code>string email = 1;</code>
        * @return This builder for chaining.
        */
@@ -3902,10 +3790,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Dirección de correo para recibir correos
-       * </pre>
-       *
        * <code>string email = 1;</code>
        * @param value The bytes for email to set.
        * @return This builder for chaining.
@@ -3922,10 +3806,6 @@ public final class EmailOuterClass {
 
       private java.lang.Object clientId_ = "";
       /**
-       * <pre>
-       * Nuevo campo para identificar al cliente
-       * </pre>
-       *
        * <code>string clientId = 2;</code>
        * @return The clientId.
        */
@@ -3942,10 +3822,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Nuevo campo para identificar al cliente
-       * </pre>
-       *
        * <code>string clientId = 2;</code>
        * @return The bytes for clientId.
        */
@@ -3963,10 +3839,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Nuevo campo para identificar al cliente
-       * </pre>
-       *
        * <code>string clientId = 2;</code>
        * @param value The clientId to set.
        * @return This builder for chaining.
@@ -3980,10 +3852,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Nuevo campo para identificar al cliente
-       * </pre>
-       *
        * <code>string clientId = 2;</code>
        * @return This builder for chaining.
        */
@@ -3994,10 +3862,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Nuevo campo para identificar al cliente
-       * </pre>
-       *
        * <code>string clientId = 2;</code>
        * @param value The bytes for clientId to set.
        * @return This builder for chaining.
@@ -4014,10 +3878,6 @@ public final class EmailOuterClass {
 
       private int lastReceivedIndex_ ;
       /**
-       * <pre>
-       * Índice del último correo recibido
-       * </pre>
-       *
        * <code>int32 lastReceivedIndex = 3;</code>
        * @return The lastReceivedIndex.
        */
@@ -4026,10 +3886,6 @@ public final class EmailOuterClass {
         return lastReceivedIndex_;
       }
       /**
-       * <pre>
-       * Índice del último correo recibido
-       * </pre>
-       *
        * <code>int32 lastReceivedIndex = 3;</code>
        * @param value The lastReceivedIndex to set.
        * @return This builder for chaining.
@@ -4042,10 +3898,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Índice del último correo recibido
-       * </pre>
-       *
        * <code>int32 lastReceivedIndex = 3;</code>
        * @return This builder for chaining.
        */
@@ -4107,6 +3959,1786 @@ public final class EmailOuterClass {
 
   }
 
+  public interface BandejaRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:email.BandejaRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Dirección de correo del cliente
+     * </pre>
+     *
+     * <code>string clientEmail = 1;</code>
+     * @return The clientEmail.
+     */
+    java.lang.String getClientEmail();
+    /**
+     * <pre>
+     * Dirección de correo del cliente
+     * </pre>
+     *
+     * <code>string clientEmail = 1;</code>
+     * @return The bytes for clientEmail.
+     */
+    com.google.protobuf.ByteString
+        getClientEmailBytes();
+  }
+  /**
+   * <pre>
+   * Definir BandejaRequest y BandejaResponse para el nuevo método VerBandeja
+   * </pre>
+   *
+   * Protobuf type {@code email.BandejaRequest}
+   */
+  public static final class BandejaRequest extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:email.BandejaRequest)
+      BandejaRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 28,
+        /* patch= */ 3,
+        /* suffix= */ "",
+        BandejaRequest.class.getName());
+    }
+    // Use BandejaRequest.newBuilder() to construct.
+    private BandejaRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BandejaRequest() {
+      clientEmail_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return email.EmailOuterClass.internal_static_email_BandejaRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return email.EmailOuterClass.internal_static_email_BandejaRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              email.EmailOuterClass.BandejaRequest.class, email.EmailOuterClass.BandejaRequest.Builder.class);
+    }
+
+    public static final int CLIENTEMAIL_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object clientEmail_ = "";
+    /**
+     * <pre>
+     * Dirección de correo del cliente
+     * </pre>
+     *
+     * <code>string clientEmail = 1;</code>
+     * @return The clientEmail.
+     */
+    @java.lang.Override
+    public java.lang.String getClientEmail() {
+      java.lang.Object ref = clientEmail_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        clientEmail_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Dirección de correo del cliente
+     * </pre>
+     *
+     * <code>string clientEmail = 1;</code>
+     * @return The bytes for clientEmail.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getClientEmailBytes() {
+      java.lang.Object ref = clientEmail_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        clientEmail_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientEmail_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, clientEmail_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientEmail_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, clientEmail_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof email.EmailOuterClass.BandejaRequest)) {
+        return super.equals(obj);
+      }
+      email.EmailOuterClass.BandejaRequest other = (email.EmailOuterClass.BandejaRequest) obj;
+
+      if (!getClientEmail()
+          .equals(other.getClientEmail())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CLIENTEMAIL_FIELD_NUMBER;
+      hash = (53 * hash) + getClientEmail().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static email.EmailOuterClass.BandejaRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static email.EmailOuterClass.BandejaRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static email.EmailOuterClass.BandejaRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static email.EmailOuterClass.BandejaRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static email.EmailOuterClass.BandejaRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static email.EmailOuterClass.BandejaRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static email.EmailOuterClass.BandejaRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static email.EmailOuterClass.BandejaRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static email.EmailOuterClass.BandejaRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static email.EmailOuterClass.BandejaRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static email.EmailOuterClass.BandejaRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static email.EmailOuterClass.BandejaRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(email.EmailOuterClass.BandejaRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Definir BandejaRequest y BandejaResponse para el nuevo método VerBandeja
+     * </pre>
+     *
+     * Protobuf type {@code email.BandejaRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:email.BandejaRequest)
+        email.EmailOuterClass.BandejaRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return email.EmailOuterClass.internal_static_email_BandejaRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return email.EmailOuterClass.internal_static_email_BandejaRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                email.EmailOuterClass.BandejaRequest.class, email.EmailOuterClass.BandejaRequest.Builder.class);
+      }
+
+      // Construct using email.EmailOuterClass.BandejaRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        clientEmail_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return email.EmailOuterClass.internal_static_email_BandejaRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public email.EmailOuterClass.BandejaRequest getDefaultInstanceForType() {
+        return email.EmailOuterClass.BandejaRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public email.EmailOuterClass.BandejaRequest build() {
+        email.EmailOuterClass.BandejaRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public email.EmailOuterClass.BandejaRequest buildPartial() {
+        email.EmailOuterClass.BandejaRequest result = new email.EmailOuterClass.BandejaRequest(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(email.EmailOuterClass.BandejaRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.clientEmail_ = clientEmail_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof email.EmailOuterClass.BandejaRequest) {
+          return mergeFrom((email.EmailOuterClass.BandejaRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(email.EmailOuterClass.BandejaRequest other) {
+        if (other == email.EmailOuterClass.BandejaRequest.getDefaultInstance()) return this;
+        if (!other.getClientEmail().isEmpty()) {
+          clientEmail_ = other.clientEmail_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                clientEmail_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object clientEmail_ = "";
+      /**
+       * <pre>
+       * Dirección de correo del cliente
+       * </pre>
+       *
+       * <code>string clientEmail = 1;</code>
+       * @return The clientEmail.
+       */
+      public java.lang.String getClientEmail() {
+        java.lang.Object ref = clientEmail_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          clientEmail_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Dirección de correo del cliente
+       * </pre>
+       *
+       * <code>string clientEmail = 1;</code>
+       * @return The bytes for clientEmail.
+       */
+      public com.google.protobuf.ByteString
+          getClientEmailBytes() {
+        java.lang.Object ref = clientEmail_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          clientEmail_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Dirección de correo del cliente
+       * </pre>
+       *
+       * <code>string clientEmail = 1;</code>
+       * @param value The clientEmail to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClientEmail(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        clientEmail_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Dirección de correo del cliente
+       * </pre>
+       *
+       * <code>string clientEmail = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClientEmail() {
+        clientEmail_ = getDefaultInstance().getClientEmail();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Dirección de correo del cliente
+       * </pre>
+       *
+       * <code>string clientEmail = 1;</code>
+       * @param value The bytes for clientEmail to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClientEmailBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        clientEmail_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:email.BandejaRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:email.BandejaRequest)
+    private static final email.EmailOuterClass.BandejaRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new email.EmailOuterClass.BandejaRequest();
+    }
+
+    public static email.EmailOuterClass.BandejaRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BandejaRequest>
+        PARSER = new com.google.protobuf.AbstractParser<BandejaRequest>() {
+      @java.lang.Override
+      public BandejaRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<BandejaRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BandejaRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public email.EmailOuterClass.BandejaRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BandejaResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:email.BandejaResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    java.util.List<email.EmailOuterClass.Email> 
+        getBandejaEntradaList();
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    email.EmailOuterClass.Email getBandejaEntrada(int index);
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    int getBandejaEntradaCount();
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
+        getBandejaEntradaOrBuilderList();
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    email.EmailOuterClass.EmailOrBuilder getBandejaEntradaOrBuilder(
+        int index);
+
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    java.util.List<email.EmailOuterClass.Email> 
+        getBandejaEnviadosList();
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    email.EmailOuterClass.Email getBandejaEnviados(int index);
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    int getBandejaEnviadosCount();
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
+        getBandejaEnviadosOrBuilderList();
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    email.EmailOuterClass.EmailOrBuilder getBandejaEnviadosOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code email.BandejaResponse}
+   */
+  public static final class BandejaResponse extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:email.BandejaResponse)
+      BandejaResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 28,
+        /* patch= */ 3,
+        /* suffix= */ "",
+        BandejaResponse.class.getName());
+    }
+    // Use BandejaResponse.newBuilder() to construct.
+    private BandejaResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private BandejaResponse() {
+      bandejaEntrada_ = java.util.Collections.emptyList();
+      bandejaEnviados_ = java.util.Collections.emptyList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return email.EmailOuterClass.internal_static_email_BandejaResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return email.EmailOuterClass.internal_static_email_BandejaResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              email.EmailOuterClass.BandejaResponse.class, email.EmailOuterClass.BandejaResponse.Builder.class);
+    }
+
+    public static final int BANDEJAENTRADA_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private java.util.List<email.EmailOuterClass.Email> bandejaEntrada_;
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<email.EmailOuterClass.Email> getBandejaEntradaList() {
+      return bandejaEntrada_;
+    }
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
+        getBandejaEntradaOrBuilderList() {
+      return bandejaEntrada_;
+    }
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    @java.lang.Override
+    public int getBandejaEntradaCount() {
+      return bandejaEntrada_.size();
+    }
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    @java.lang.Override
+    public email.EmailOuterClass.Email getBandejaEntrada(int index) {
+      return bandejaEntrada_.get(index);
+    }
+    /**
+     * <pre>
+     * Lista de correos en la bandeja de entrada
+     * </pre>
+     *
+     * <code>repeated .email.Email bandejaEntrada = 1;</code>
+     */
+    @java.lang.Override
+    public email.EmailOuterClass.EmailOrBuilder getBandejaEntradaOrBuilder(
+        int index) {
+      return bandejaEntrada_.get(index);
+    }
+
+    public static final int BANDEJAENVIADOS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private java.util.List<email.EmailOuterClass.Email> bandejaEnviados_;
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    @java.lang.Override
+    public java.util.List<email.EmailOuterClass.Email> getBandejaEnviadosList() {
+      return bandejaEnviados_;
+    }
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
+        getBandejaEnviadosOrBuilderList() {
+      return bandejaEnviados_;
+    }
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    @java.lang.Override
+    public int getBandejaEnviadosCount() {
+      return bandejaEnviados_.size();
+    }
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    @java.lang.Override
+    public email.EmailOuterClass.Email getBandejaEnviados(int index) {
+      return bandejaEnviados_.get(index);
+    }
+    /**
+     * <code>repeated .email.Email bandejaEnviados = 2;</code>
+     */
+    @java.lang.Override
+    public email.EmailOuterClass.EmailOrBuilder getBandejaEnviadosOrBuilder(
+        int index) {
+      return bandejaEnviados_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < bandejaEntrada_.size(); i++) {
+        output.writeMessage(1, bandejaEntrada_.get(i));
+      }
+      for (int i = 0; i < bandejaEnviados_.size(); i++) {
+        output.writeMessage(2, bandejaEnviados_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < bandejaEntrada_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, bandejaEntrada_.get(i));
+      }
+      for (int i = 0; i < bandejaEnviados_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, bandejaEnviados_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof email.EmailOuterClass.BandejaResponse)) {
+        return super.equals(obj);
+      }
+      email.EmailOuterClass.BandejaResponse other = (email.EmailOuterClass.BandejaResponse) obj;
+
+      if (!getBandejaEntradaList()
+          .equals(other.getBandejaEntradaList())) return false;
+      if (!getBandejaEnviadosList()
+          .equals(other.getBandejaEnviadosList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getBandejaEntradaCount() > 0) {
+        hash = (37 * hash) + BANDEJAENTRADA_FIELD_NUMBER;
+        hash = (53 * hash) + getBandejaEntradaList().hashCode();
+      }
+      if (getBandejaEnviadosCount() > 0) {
+        hash = (37 * hash) + BANDEJAENVIADOS_FIELD_NUMBER;
+        hash = (53 * hash) + getBandejaEnviadosList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static email.EmailOuterClass.BandejaResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static email.EmailOuterClass.BandejaResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static email.EmailOuterClass.BandejaResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static email.EmailOuterClass.BandejaResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static email.EmailOuterClass.BandejaResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static email.EmailOuterClass.BandejaResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static email.EmailOuterClass.BandejaResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static email.EmailOuterClass.BandejaResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static email.EmailOuterClass.BandejaResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static email.EmailOuterClass.BandejaResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static email.EmailOuterClass.BandejaResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static email.EmailOuterClass.BandejaResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(email.EmailOuterClass.BandejaResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code email.BandejaResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:email.BandejaResponse)
+        email.EmailOuterClass.BandejaResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return email.EmailOuterClass.internal_static_email_BandejaResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return email.EmailOuterClass.internal_static_email_BandejaResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                email.EmailOuterClass.BandejaResponse.class, email.EmailOuterClass.BandejaResponse.Builder.class);
+      }
+
+      // Construct using email.EmailOuterClass.BandejaResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (bandejaEntradaBuilder_ == null) {
+          bandejaEntrada_ = java.util.Collections.emptyList();
+        } else {
+          bandejaEntrada_ = null;
+          bandejaEntradaBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (bandejaEnviadosBuilder_ == null) {
+          bandejaEnviados_ = java.util.Collections.emptyList();
+        } else {
+          bandejaEnviados_ = null;
+          bandejaEnviadosBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return email.EmailOuterClass.internal_static_email_BandejaResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public email.EmailOuterClass.BandejaResponse getDefaultInstanceForType() {
+        return email.EmailOuterClass.BandejaResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public email.EmailOuterClass.BandejaResponse build() {
+        email.EmailOuterClass.BandejaResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public email.EmailOuterClass.BandejaResponse buildPartial() {
+        email.EmailOuterClass.BandejaResponse result = new email.EmailOuterClass.BandejaResponse(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(email.EmailOuterClass.BandejaResponse result) {
+        if (bandejaEntradaBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            bandejaEntrada_ = java.util.Collections.unmodifiableList(bandejaEntrada_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.bandejaEntrada_ = bandejaEntrada_;
+        } else {
+          result.bandejaEntrada_ = bandejaEntradaBuilder_.build();
+        }
+        if (bandejaEnviadosBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0)) {
+            bandejaEnviados_ = java.util.Collections.unmodifiableList(bandejaEnviados_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.bandejaEnviados_ = bandejaEnviados_;
+        } else {
+          result.bandejaEnviados_ = bandejaEnviadosBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(email.EmailOuterClass.BandejaResponse result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof email.EmailOuterClass.BandejaResponse) {
+          return mergeFrom((email.EmailOuterClass.BandejaResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(email.EmailOuterClass.BandejaResponse other) {
+        if (other == email.EmailOuterClass.BandejaResponse.getDefaultInstance()) return this;
+        if (bandejaEntradaBuilder_ == null) {
+          if (!other.bandejaEntrada_.isEmpty()) {
+            if (bandejaEntrada_.isEmpty()) {
+              bandejaEntrada_ = other.bandejaEntrada_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureBandejaEntradaIsMutable();
+              bandejaEntrada_.addAll(other.bandejaEntrada_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.bandejaEntrada_.isEmpty()) {
+            if (bandejaEntradaBuilder_.isEmpty()) {
+              bandejaEntradaBuilder_.dispose();
+              bandejaEntradaBuilder_ = null;
+              bandejaEntrada_ = other.bandejaEntrada_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              bandejaEntradaBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getBandejaEntradaFieldBuilder() : null;
+            } else {
+              bandejaEntradaBuilder_.addAllMessages(other.bandejaEntrada_);
+            }
+          }
+        }
+        if (bandejaEnviadosBuilder_ == null) {
+          if (!other.bandejaEnviados_.isEmpty()) {
+            if (bandejaEnviados_.isEmpty()) {
+              bandejaEnviados_ = other.bandejaEnviados_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureBandejaEnviadosIsMutable();
+              bandejaEnviados_.addAll(other.bandejaEnviados_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.bandejaEnviados_.isEmpty()) {
+            if (bandejaEnviadosBuilder_.isEmpty()) {
+              bandejaEnviadosBuilder_.dispose();
+              bandejaEnviadosBuilder_ = null;
+              bandejaEnviados_ = other.bandejaEnviados_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              bandejaEnviadosBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getBandejaEnviadosFieldBuilder() : null;
+            } else {
+              bandejaEnviadosBuilder_.addAllMessages(other.bandejaEnviados_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                email.EmailOuterClass.Email m =
+                    input.readMessage(
+                        email.EmailOuterClass.Email.parser(),
+                        extensionRegistry);
+                if (bandejaEntradaBuilder_ == null) {
+                  ensureBandejaEntradaIsMutable();
+                  bandejaEntrada_.add(m);
+                } else {
+                  bandejaEntradaBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                email.EmailOuterClass.Email m =
+                    input.readMessage(
+                        email.EmailOuterClass.Email.parser(),
+                        extensionRegistry);
+                if (bandejaEnviadosBuilder_ == null) {
+                  ensureBandejaEnviadosIsMutable();
+                  bandejaEnviados_.add(m);
+                } else {
+                  bandejaEnviadosBuilder_.addMessage(m);
+                }
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<email.EmailOuterClass.Email> bandejaEntrada_ =
+        java.util.Collections.emptyList();
+      private void ensureBandejaEntradaIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          bandejaEntrada_ = new java.util.ArrayList<email.EmailOuterClass.Email>(bandejaEntrada_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder> bandejaEntradaBuilder_;
+
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public java.util.List<email.EmailOuterClass.Email> getBandejaEntradaList() {
+        if (bandejaEntradaBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(bandejaEntrada_);
+        } else {
+          return bandejaEntradaBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public int getBandejaEntradaCount() {
+        if (bandejaEntradaBuilder_ == null) {
+          return bandejaEntrada_.size();
+        } else {
+          return bandejaEntradaBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public email.EmailOuterClass.Email getBandejaEntrada(int index) {
+        if (bandejaEntradaBuilder_ == null) {
+          return bandejaEntrada_.get(index);
+        } else {
+          return bandejaEntradaBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public Builder setBandejaEntrada(
+          int index, email.EmailOuterClass.Email value) {
+        if (bandejaEntradaBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBandejaEntradaIsMutable();
+          bandejaEntrada_.set(index, value);
+          onChanged();
+        } else {
+          bandejaEntradaBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public Builder setBandejaEntrada(
+          int index, email.EmailOuterClass.Email.Builder builderForValue) {
+        if (bandejaEntradaBuilder_ == null) {
+          ensureBandejaEntradaIsMutable();
+          bandejaEntrada_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          bandejaEntradaBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public Builder addBandejaEntrada(email.EmailOuterClass.Email value) {
+        if (bandejaEntradaBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBandejaEntradaIsMutable();
+          bandejaEntrada_.add(value);
+          onChanged();
+        } else {
+          bandejaEntradaBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public Builder addBandejaEntrada(
+          int index, email.EmailOuterClass.Email value) {
+        if (bandejaEntradaBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBandejaEntradaIsMutable();
+          bandejaEntrada_.add(index, value);
+          onChanged();
+        } else {
+          bandejaEntradaBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public Builder addBandejaEntrada(
+          email.EmailOuterClass.Email.Builder builderForValue) {
+        if (bandejaEntradaBuilder_ == null) {
+          ensureBandejaEntradaIsMutable();
+          bandejaEntrada_.add(builderForValue.build());
+          onChanged();
+        } else {
+          bandejaEntradaBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public Builder addBandejaEntrada(
+          int index, email.EmailOuterClass.Email.Builder builderForValue) {
+        if (bandejaEntradaBuilder_ == null) {
+          ensureBandejaEntradaIsMutable();
+          bandejaEntrada_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          bandejaEntradaBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public Builder addAllBandejaEntrada(
+          java.lang.Iterable<? extends email.EmailOuterClass.Email> values) {
+        if (bandejaEntradaBuilder_ == null) {
+          ensureBandejaEntradaIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, bandejaEntrada_);
+          onChanged();
+        } else {
+          bandejaEntradaBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public Builder clearBandejaEntrada() {
+        if (bandejaEntradaBuilder_ == null) {
+          bandejaEntrada_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          bandejaEntradaBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public Builder removeBandejaEntrada(int index) {
+        if (bandejaEntradaBuilder_ == null) {
+          ensureBandejaEntradaIsMutable();
+          bandejaEntrada_.remove(index);
+          onChanged();
+        } else {
+          bandejaEntradaBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public email.EmailOuterClass.Email.Builder getBandejaEntradaBuilder(
+          int index) {
+        return getBandejaEntradaFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public email.EmailOuterClass.EmailOrBuilder getBandejaEntradaOrBuilder(
+          int index) {
+        if (bandejaEntradaBuilder_ == null) {
+          return bandejaEntrada_.get(index);  } else {
+          return bandejaEntradaBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
+           getBandejaEntradaOrBuilderList() {
+        if (bandejaEntradaBuilder_ != null) {
+          return bandejaEntradaBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(bandejaEntrada_);
+        }
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public email.EmailOuterClass.Email.Builder addBandejaEntradaBuilder() {
+        return getBandejaEntradaFieldBuilder().addBuilder(
+            email.EmailOuterClass.Email.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public email.EmailOuterClass.Email.Builder addBandejaEntradaBuilder(
+          int index) {
+        return getBandejaEntradaFieldBuilder().addBuilder(
+            index, email.EmailOuterClass.Email.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Lista de correos en la bandeja de entrada
+       * </pre>
+       *
+       * <code>repeated .email.Email bandejaEntrada = 1;</code>
+       */
+      public java.util.List<email.EmailOuterClass.Email.Builder> 
+           getBandejaEntradaBuilderList() {
+        return getBandejaEntradaFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder> 
+          getBandejaEntradaFieldBuilder() {
+        if (bandejaEntradaBuilder_ == null) {
+          bandejaEntradaBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder>(
+                  bandejaEntrada_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          bandejaEntrada_ = null;
+        }
+        return bandejaEntradaBuilder_;
+      }
+
+      private java.util.List<email.EmailOuterClass.Email> bandejaEnviados_ =
+        java.util.Collections.emptyList();
+      private void ensureBandejaEnviadosIsMutable() {
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          bandejaEnviados_ = new java.util.ArrayList<email.EmailOuterClass.Email>(bandejaEnviados_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder> bandejaEnviadosBuilder_;
+
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public java.util.List<email.EmailOuterClass.Email> getBandejaEnviadosList() {
+        if (bandejaEnviadosBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(bandejaEnviados_);
+        } else {
+          return bandejaEnviadosBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public int getBandejaEnviadosCount() {
+        if (bandejaEnviadosBuilder_ == null) {
+          return bandejaEnviados_.size();
+        } else {
+          return bandejaEnviadosBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public email.EmailOuterClass.Email getBandejaEnviados(int index) {
+        if (bandejaEnviadosBuilder_ == null) {
+          return bandejaEnviados_.get(index);
+        } else {
+          return bandejaEnviadosBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public Builder setBandejaEnviados(
+          int index, email.EmailOuterClass.Email value) {
+        if (bandejaEnviadosBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBandejaEnviadosIsMutable();
+          bandejaEnviados_.set(index, value);
+          onChanged();
+        } else {
+          bandejaEnviadosBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public Builder setBandejaEnviados(
+          int index, email.EmailOuterClass.Email.Builder builderForValue) {
+        if (bandejaEnviadosBuilder_ == null) {
+          ensureBandejaEnviadosIsMutable();
+          bandejaEnviados_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          bandejaEnviadosBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public Builder addBandejaEnviados(email.EmailOuterClass.Email value) {
+        if (bandejaEnviadosBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBandejaEnviadosIsMutable();
+          bandejaEnviados_.add(value);
+          onChanged();
+        } else {
+          bandejaEnviadosBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public Builder addBandejaEnviados(
+          int index, email.EmailOuterClass.Email value) {
+        if (bandejaEnviadosBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBandejaEnviadosIsMutable();
+          bandejaEnviados_.add(index, value);
+          onChanged();
+        } else {
+          bandejaEnviadosBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public Builder addBandejaEnviados(
+          email.EmailOuterClass.Email.Builder builderForValue) {
+        if (bandejaEnviadosBuilder_ == null) {
+          ensureBandejaEnviadosIsMutable();
+          bandejaEnviados_.add(builderForValue.build());
+          onChanged();
+        } else {
+          bandejaEnviadosBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public Builder addBandejaEnviados(
+          int index, email.EmailOuterClass.Email.Builder builderForValue) {
+        if (bandejaEnviadosBuilder_ == null) {
+          ensureBandejaEnviadosIsMutable();
+          bandejaEnviados_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          bandejaEnviadosBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public Builder addAllBandejaEnviados(
+          java.lang.Iterable<? extends email.EmailOuterClass.Email> values) {
+        if (bandejaEnviadosBuilder_ == null) {
+          ensureBandejaEnviadosIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, bandejaEnviados_);
+          onChanged();
+        } else {
+          bandejaEnviadosBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public Builder clearBandejaEnviados() {
+        if (bandejaEnviadosBuilder_ == null) {
+          bandejaEnviados_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          bandejaEnviadosBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public Builder removeBandejaEnviados(int index) {
+        if (bandejaEnviadosBuilder_ == null) {
+          ensureBandejaEnviadosIsMutable();
+          bandejaEnviados_.remove(index);
+          onChanged();
+        } else {
+          bandejaEnviadosBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public email.EmailOuterClass.Email.Builder getBandejaEnviadosBuilder(
+          int index) {
+        return getBandejaEnviadosFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public email.EmailOuterClass.EmailOrBuilder getBandejaEnviadosOrBuilder(
+          int index) {
+        if (bandejaEnviadosBuilder_ == null) {
+          return bandejaEnviados_.get(index);  } else {
+          return bandejaEnviadosBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
+           getBandejaEnviadosOrBuilderList() {
+        if (bandejaEnviadosBuilder_ != null) {
+          return bandejaEnviadosBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(bandejaEnviados_);
+        }
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public email.EmailOuterClass.Email.Builder addBandejaEnviadosBuilder() {
+        return getBandejaEnviadosFieldBuilder().addBuilder(
+            email.EmailOuterClass.Email.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public email.EmailOuterClass.Email.Builder addBandejaEnviadosBuilder(
+          int index) {
+        return getBandejaEnviadosFieldBuilder().addBuilder(
+            index, email.EmailOuterClass.Email.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .email.Email bandejaEnviados = 2;</code>
+       */
+      public java.util.List<email.EmailOuterClass.Email.Builder> 
+           getBandejaEnviadosBuilderList() {
+        return getBandejaEnviadosFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder> 
+          getBandejaEnviadosFieldBuilder() {
+        if (bandejaEnviadosBuilder_ == null) {
+          bandejaEnviadosBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder>(
+                  bandejaEnviados_,
+                  ((bitField0_ & 0x00000002) != 0),
+                  getParentForChildren(),
+                  isClean());
+          bandejaEnviados_ = null;
+        }
+        return bandejaEnviadosBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:email.BandejaResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:email.BandejaResponse)
+    private static final email.EmailOuterClass.BandejaResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new email.EmailOuterClass.BandejaResponse();
+    }
+
+    public static email.EmailOuterClass.BandejaResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BandejaResponse>
+        PARSER = new com.google.protobuf.AbstractParser<BandejaResponse>() {
+      @java.lang.Override
+      public BandejaResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<BandejaResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BandejaResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public email.EmailOuterClass.BandejaResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_email_Email_descriptor;
   private static final 
@@ -4132,6 +5764,16 @@ public final class EmailOuterClass {
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_email_ReceiveRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_email_BandejaRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_email_BandejaRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_email_BandejaResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_email_BandejaResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -4150,11 +5792,16 @@ public final class EmailOuterClass {
       "\022\033\n\005email\030\001 \001(\0132\014.email.Email\"1\n\rEmailRe" +
       "sponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t" +
       "\"L\n\016ReceiveRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010cli" +
-      "entId\030\002 \001(\t\022\031\n\021lastReceivedIndex\030\003 \001(\0052\200" +
-      "\001\n\014EmailService\0228\n\013EnviarEmail\022\023.email.E" +
-      "mailRequest\032\024.email.EmailResponse\0226\n\rRec" +
-      "ibirEmails\022\025.email.ReceiveRequest\032\014.emai" +
-      "l.Email0\001b\006proto3"
+      "entId\030\002 \001(\t\022\031\n\021lastReceivedIndex\030\003 \001(\005\"%" +
+      "\n\016BandejaRequest\022\023\n\013clientEmail\030\001 \001(\t\"^\n" +
+      "\017BandejaResponse\022$\n\016bandejaEntrada\030\001 \003(\013" +
+      "2\014.email.Email\022%\n\017bandejaEnviados\030\002 \003(\0132" +
+      "\014.email.Email2\275\001\n\014EmailService\0228\n\013Enviar" +
+      "Email\022\023.email.EmailRequest\032\024.email.Email" +
+      "Response\0226\n\rRecibirEmails\022\025.email.Receiv" +
+      "eRequest\032\014.email.Email0\001\022;\n\nVerBandeja\022\025" +
+      ".email.BandejaRequest\032\026.email.BandejaRes" +
+      "ponseb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4190,6 +5837,18 @@ public final class EmailOuterClass {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_email_ReceiveRequest_descriptor,
         new java.lang.String[] { "Email", "ClientId", "LastReceivedIndex", });
+    internal_static_email_BandejaRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_email_BandejaRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_email_BandejaRequest_descriptor,
+        new java.lang.String[] { "ClientEmail", });
+    internal_static_email_BandejaResponse_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_email_BandejaResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_email_BandejaResponse_descriptor,
+        new java.lang.String[] { "BandejaEntrada", "BandejaEnviados", });
     descriptor.resolveAllFeaturesImmutable();
   }
 

@@ -77,6 +77,37 @@ public final class EmailServiceGrpc {
     return getRecibirEmailsMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<email.EmailOuterClass.BandejaRequest,
+      email.EmailOuterClass.BandejaResponse> getVerBandejaMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "VerBandeja",
+      requestType = email.EmailOuterClass.BandejaRequest.class,
+      responseType = email.EmailOuterClass.BandejaResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<email.EmailOuterClass.BandejaRequest,
+      email.EmailOuterClass.BandejaResponse> getVerBandejaMethod() {
+    io.grpc.MethodDescriptor<email.EmailOuterClass.BandejaRequest, email.EmailOuterClass.BandejaResponse> getVerBandejaMethod;
+    if ((getVerBandejaMethod = EmailServiceGrpc.getVerBandejaMethod) == null) {
+      synchronized (EmailServiceGrpc.class) {
+        if ((getVerBandejaMethod = EmailServiceGrpc.getVerBandejaMethod) == null) {
+          EmailServiceGrpc.getVerBandejaMethod = getVerBandejaMethod =
+              io.grpc.MethodDescriptor.<email.EmailOuterClass.BandejaRequest, email.EmailOuterClass.BandejaResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "VerBandeja"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  email.EmailOuterClass.BandejaRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  email.EmailOuterClass.BandejaResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new EmailServiceMethodDescriptorSupplier("VerBandeja"))
+              .build();
+        }
+      }
+    }
+    return getVerBandejaMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -138,6 +169,16 @@ public final class EmailServiceGrpc {
         io.grpc.stub.StreamObserver<email.EmailOuterClass.Email> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRecibirEmailsMethod(), responseObserver);
     }
+
+    /**
+     * <pre>
+     * Nuevo método para ver la bandeja de entrada
+     * </pre>
+     */
+    default void verBandeja(email.EmailOuterClass.BandejaRequest request,
+        io.grpc.stub.StreamObserver<email.EmailOuterClass.BandejaResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getVerBandejaMethod(), responseObserver);
+    }
   }
 
   /**
@@ -182,6 +223,17 @@ public final class EmailServiceGrpc {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getRecibirEmailsMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * Nuevo método para ver la bandeja de entrada
+     * </pre>
+     */
+    public void verBandeja(email.EmailOuterClass.BandejaRequest request,
+        io.grpc.stub.StreamObserver<email.EmailOuterClass.BandejaResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getVerBandejaMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -214,6 +266,16 @@ public final class EmailServiceGrpc {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getRecibirEmailsMethod(), getCallOptions(), request);
     }
+
+    /**
+     * <pre>
+     * Nuevo método para ver la bandeja de entrada
+     * </pre>
+     */
+    public email.EmailOuterClass.BandejaResponse verBandeja(email.EmailOuterClass.BandejaRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getVerBandejaMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -239,10 +301,22 @@ public final class EmailServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getEnviarEmailMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * Nuevo método para ver la bandeja de entrada
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<email.EmailOuterClass.BandejaResponse> verBandeja(
+        email.EmailOuterClass.BandejaRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getVerBandejaMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_ENVIAR_EMAIL = 0;
   private static final int METHODID_RECIBIR_EMAILS = 1;
+  private static final int METHODID_VER_BANDEJA = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -268,6 +342,10 @@ public final class EmailServiceGrpc {
         case METHODID_RECIBIR_EMAILS:
           serviceImpl.recibirEmails((email.EmailOuterClass.ReceiveRequest) request,
               (io.grpc.stub.StreamObserver<email.EmailOuterClass.Email>) responseObserver);
+          break;
+        case METHODID_VER_BANDEJA:
+          serviceImpl.verBandeja((email.EmailOuterClass.BandejaRequest) request,
+              (io.grpc.stub.StreamObserver<email.EmailOuterClass.BandejaResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -301,6 +379,13 @@ public final class EmailServiceGrpc {
               email.EmailOuterClass.ReceiveRequest,
               email.EmailOuterClass.Email>(
                 service, METHODID_RECIBIR_EMAILS)))
+        .addMethod(
+          getVerBandejaMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              email.EmailOuterClass.BandejaRequest,
+              email.EmailOuterClass.BandejaResponse>(
+                service, METHODID_VER_BANDEJA)))
         .build();
   }
 
@@ -351,6 +436,7 @@ public final class EmailServiceGrpc {
               .setSchemaDescriptor(new EmailServiceFileDescriptorSupplier())
               .addMethod(getEnviarEmailMethod())
               .addMethod(getRecibirEmailsMethod())
+              .addMethod(getVerBandejaMethod())
               .build();
         }
       }
