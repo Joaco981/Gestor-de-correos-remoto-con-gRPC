@@ -9,6 +9,7 @@ import com.example.gestordecorreo.Contacto;
 
 public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
     private ArrayList<Email> bandejaEntrada = new ArrayList<>();
+    private ArrayList<Email> bandejaEnviados = new ArrayList<>();
 
     @Override
     public void enviarEmail(EmailOuterClass.EmailRequest request, StreamObserver<EmailOuterClass.EmailResponse> responseObserver) {
@@ -29,7 +30,10 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
             email.agregarDestinatario(destinatario);
         }
 
-        // Agregar el correo a la bandeja de entrada
+        // Agregar el correo a la bandeja de enviados del remitente
+        bandejaEnviados.add(email);
+
+        // Agregar el correo a la bandeja de entrada de cada destinatario
         bandejaEntrada.add(email);
 
         // Enviar la respuesta
@@ -39,7 +43,6 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
-
 
     @Override
     public void recibirEmails(EmailOuterClass.ReceiveRequest request, StreamObserver<EmailOuterClass.Email> responseObserver) {
@@ -54,7 +57,7 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
                             .setEmail(email.getRemitente().getEmail())
                             .build())
                     // Agregar los destinatarios
-                    .addAllDestinatarios(email.getDestinatarios().stream().map(destinatario ->
+                    .addAllDestinatarios(email.getDestinatarios().stream().map(destinatario -> 
                             EmailOuterClass.Contacto.newBuilder()
                                     .setNombreCompleto(destinatario.getNombre())
                                     .setEmail(destinatario.getEmail())
@@ -65,46 +68,63 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
         }
         responseObserver.onCompleted();
     }
+
     @Override
-public void verBandeja(EmailOuterClass.BandejaRequest request, StreamObserver<EmailOuterClass.BandejaResponse> responseObserver) {
-    String clientEmail = request.getClientEmail();
+    public void verBandeja(EmailOuterClass.BandejaRequest request, StreamObserver<EmailOuterClass.BandejaResponse> responseObserver) {
+        EmailOuterClass.Contacto clientContacto = request.getClientEmail(); // Cambiado a Contacto
 
-    // Obtener los emails de la bandeja de entrada del cliente
-    ArrayList<Email> bandejaEntradaCliente = obtenerBandejaEntradaPorEmail(clientEmail);
+        // Obtener los emails de la bandeja de entrada y de enviados del cliente usando el objeto Contacto
+        ArrayList<Email> bandejaEntradaCliente = obtenerBandejaEntradaPorEmail(clientContacto);
+        ArrayList<Email> bandejaEnviadosCliente = obtenerBandejaEnviadosPorEmail(clientContacto);
 
-    // Construir la respuesta
-    EmailOuterClass.BandejaResponse.Builder responseBuilder = EmailOuterClass.BandejaResponse.newBuilder();
-    for (Email email : bandejaEntradaCliente) {
-        EmailOuterClass.Email emailProto = EmailOuterClass.Email.newBuilder()
-                .setAsunto(email.getAsunto())
-                .setContenido(email.getContenido())
-                .setRemitente(EmailOuterClass.Contacto.newBuilder()
-                        .setNombreCompleto(email.getRemitente().getNombre())
-                        .setEmail(email.getRemitente().getEmail())
-                        .build())
-                .addAllDestinatarios(email.getDestinatarios().stream()
-                        .map(dest -> EmailOuterClass.Contacto.newBuilder()
-                                .setNombreCompleto(dest.getNombre())
-                                .setEmail(dest.getEmail())
-                                .build())
-                        .collect(Collectors.toList()))
-                .build();
-        responseBuilder.addBandejaEntrada(emailProto);
+        // Construir la respuesta
+        EmailOuterClass.BandejaResponse.Builder responseBuilder = EmailOuterClass.BandejaResponse.newBuilder();
+        for (Email email : bandejaEntradaCliente) {
+            EmailOuterClass.Email emailProto = EmailOuterClass.Email.newBuilder()
+                    .setAsunto(email.getAsunto())
+                    .setContenido(email.getContenido())
+                    .setRemitente(EmailOuterClass.Contacto.newBuilder()
+                            .setNombreCompleto(email.getRemitente().getNombre())
+                            .setEmail(email.getRemitente().getEmail())
+                            .build())
+                    .addAllDestinatarios(email.getDestinatarios().stream()
+                            .map(dest -> EmailOuterClass.Contacto.newBuilder()
+                                    .setNombreCompleto(dest.getNombre())
+                                    .setEmail(dest.getEmail())
+                                    .build())
+                            .collect(Collectors.toList()))
+                    .build();
+            responseBuilder.addBandejaEntrada(emailProto);
+        }
+
+        for (Email email : bandejaEnviadosCliente) {
+            EmailOuterClass.Email emailProto = EmailOuterClass.Email.newBuilder()
+                    .setAsunto(email.getAsunto())
+                    .setContenido(email.getContenido())
+                    .setRemitente(EmailOuterClass.Contacto.newBuilder()
+                            .setNombreCompleto(email.getRemitente().getNombre())
+                            .setEmail(email.getRemitente().getEmail())
+                            .build())
+                    .addAllDestinatarios(email.getDestinatarios().stream()
+                            .map(dest -> EmailOuterClass.Contacto.newBuilder()
+                                    .setNombreCompleto(dest.getNombre())
+                                    .setEmail(dest.getEmail())
+                                    .build())
+                            .collect(Collectors.toList()))
+                    .build();
+            responseBuilder.addBandejaEnviados(emailProto);
+        }
+
+        // Enviar la respuesta completa al cliente
+        responseObserver.onNext(responseBuilder.build());
+        responseObserver.onCompleted();
     }
 
-    // Enviar la respuesta completa al cliente
-    responseObserver.onNext(responseBuilder.build());
-    responseObserver.onCompleted();
-}
-
-    // Método para obtener la bandeja de entrada del cliente (puedes adaptarlo según tu implementación)
-    // Método auxiliar para obtener la bandeja de entrada de un cliente específico
-    private ArrayList<Email> obtenerBandejaEntradaPorEmail(String clientEmail) {
-        // Aquí puedes personalizar la lógica para obtener la bandeja de entrada según tu estructura de datos
+    private ArrayList<Email> obtenerBandejaEntradaPorEmail(EmailOuterClass.Contacto clientContacto) {
         ArrayList<Email> bandejaDelCliente = new ArrayList<>();
         for (Email email : bandejaEntrada) {
             for (Contacto destinatario : email.getDestinatarios()) {
-                if (destinatario.getEmail().equals(clientEmail)) {
+                if (destinatario.getEmail().equals(clientContacto.getEmail())) {
                     bandejaDelCliente.add(email);
                     break;
                 }
@@ -113,4 +133,13 @@ public void verBandeja(EmailOuterClass.BandejaRequest request, StreamObserver<Em
         return bandejaDelCliente;
     }
 
+    private ArrayList<Email> obtenerBandejaEnviadosPorEmail(EmailOuterClass.Contacto clientContacto) {
+        ArrayList<Email> bandejaDelCliente = new ArrayList<>();
+        for (Email email : bandejaEnviados) {
+            if (email.getRemitente().getEmail().equals(clientContacto.getEmail())) {
+                bandejaDelCliente.add(email);
+            }
+        }
+        return bandejaDelCliente;
+    }
 }

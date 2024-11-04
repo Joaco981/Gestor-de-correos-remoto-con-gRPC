@@ -5,7 +5,7 @@ package email;
 service EmailService {
     rpc EnviarEmail (EmailRequest) returns (EmailResponse);
     rpc RecibirEmails (ReceiveRequest) returns (stream Email);
-    rpc VerBandeja (BandejaRequest) returns (BandejaResponse); // Nuevo método para ver la bandeja de entrada
+    rpc VerBandeja (BandejaRequest) returns (BandejaResponse); 
 }
 
 message Email {
@@ -31,17 +31,16 @@ message EmailResponse {
 }
 
 message ReceiveRequest {
-    string email = 1;
+    Email email = 1;
     string clientId = 2;
     int32 lastReceivedIndex = 3;
 }
 
-// Definir BandejaRequest y BandejaResponse para el nuevo método VerBandeja
 message BandejaRequest {
-    string clientEmail = 1; // Dirección de correo del cliente
+    Contacto clientEmail = 1; 
 }
 
 message BandejaResponse {
-    repeated Email bandejaEntrada = 1; // Lista de correos en la bandeja de entrada
+    repeated Email bandejaEntrada = 1; 
     repeated Email bandejaEnviados = 2;
 }

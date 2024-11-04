@@ -6,7 +6,6 @@ import io.grpc.stub.StreamObserver;
 import com.example.gestordecorreo.Email;
 import com.example.gestordecorreo.Contacto;
 import com.example.gestordecorreo.GrupoDeUsuarios;
-import com.example.gestordecorreo.Bandeja;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -70,42 +69,50 @@ public class EmailClient {
 
     public void verBandeja() {
         try {
-            EmailOuterClass.BandejaRequest request = EmailOuterClass.BandejaRequest.newBuilder()
-                .setClientEmail(clienteEmail)
+            EmailOuterClass.Contacto clientContacto = EmailOuterClass.Contacto.newBuilder()
+                .setNombreCompleto("") // Puedes ajustar según sea necesario
+                .setEmail(clienteEmail)
                 .build();
+
+            EmailOuterClass.BandejaRequest request = EmailOuterClass.BandejaRequest.newBuilder()
+                .setClientEmail(clientContacto)
+                .build();
+
             EmailOuterClass.BandejaResponse response = blockingStub.verBandeja(request);
-    
+
             // Mostrar Bandeja de Entrada
             System.out.println("Bandeja de Entrada de " + clienteEmail + ":");
+            System.out.println();
             for (EmailOuterClass.Email email : response.getBandejaEntradaList()) {
+                System.out.println("----------------------------------------");
                 System.out.println("Asunto: " + email.getAsunto());
                 System.out.println("De: " + email.getRemitente().getNombreCompleto() + " (" + email.getRemitente().getEmail() + ")");
                 System.out.println("Contenido: " + email.getContenido());
                 System.out.println("----------------------------------------");
+                System.out.println();
             }
-    
+
             // Mostrar Bandeja de Enviados
+            System.out.println();
             System.out.println("Bandeja de Enviados de " + clienteEmail + ":");
             for (EmailOuterClass.Email email : response.getBandejaEnviadosList()) {
+                System.out.println("----------------------------------------");
                 System.out.println("Asunto: " + email.getAsunto());
-                System.out.println("Para: ");
-                for (EmailOuterClass.Contacto destinatario : email.getDestinatariosList()) {
-                    System.out.println("  - " + destinatario.getNombreCompleto() + " (" + destinatario.getEmail() + ")");
-                }
+                System.out.println("De: " + email.getRemitente().getNombreCompleto() + " (" + email.getRemitente().getEmail() + ")");
                 System.out.println("Contenido: " + email.getContenido());
                 System.out.println("----------------------------------------");
+                System.out.println();
             }
         } catch (Exception e) {
             System.err.println("Error al obtener la bandeja: " + e.getMessage());
         }
     }
-    
-    
+
     public Email convertirEmail(EmailOuterClass.Email emailOuter) {
         // Verificar y asignar el contacto existente como remitente
         Contacto remitente;
         String remitenteEmail = emailOuter.getRemitente().getEmail();
-        
+
         if (remitenteEmail.equals(contactoJoaquin.getEmail())) {
             remitente = contactoJoaquin;
         } else if (remitenteEmail.equals(contactoCandela.getEmail())) {
@@ -115,18 +122,18 @@ public class EmailClient {
         } else {
             remitente = new Contacto(emailOuter.getRemitente().getNombreCompleto(), remitenteEmail);
         }
-    
+
         // Crear el objeto Email y configurar sus campos
         Email email = new Email();
         email.setAsunto(emailOuter.getAsunto());
         email.setContenido(emailOuter.getContenido());
         email.setRemitente(remitente);
-    
+
         // Asignar los destinatarios existentes a partir de los contactos predefinidos
         for (EmailOuterClass.Contacto destinatarioOuter : emailOuter.getDestinatariosList()) {
             Contacto destinatario;
             String destinatarioEmail = destinatarioOuter.getEmail();
-    
+
             if (destinatarioEmail.equals(contactoJoaquin.getEmail())) {
                 destinatario = contactoJoaquin;
             } else if (destinatarioEmail.equals(contactoCandela.getEmail())) {
@@ -136,13 +143,12 @@ public class EmailClient {
             } else {
                 destinatario = new Contacto(destinatarioOuter.getNombreCompleto(), destinatarioEmail);
             }
-    
+
             email.agregarDestinatario(destinatario);
         }
-    
+
         return email;
     }
-    
 
     public void recibirEmails() {
         EmailOuterClass.ReceiveRequest request = EmailOuterClass.ReceiveRequest.newBuilder().build();
@@ -191,7 +197,7 @@ public class EmailClient {
                 }
             }
         });
-    }    
+    }
 
     public void shutdown() {
         if (channel != null && !channel.isShutdown()) {

@@ -171,9 +171,6 @@ public final class EmailServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Nuevo método para ver la bandeja de entrada
-     * </pre>
      */
     default void verBandeja(email.EmailOuterClass.BandejaRequest request,
         io.grpc.stub.StreamObserver<email.EmailOuterClass.BandejaResponse> responseObserver) {
@@ -225,9 +222,6 @@ public final class EmailServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Nuevo método para ver la bandeja de entrada
-     * </pre>
      */
     public void verBandeja(email.EmailOuterClass.BandejaRequest request,
         io.grpc.stub.StreamObserver<email.EmailOuterClass.BandejaResponse> responseObserver) {
@@ -268,9 +262,6 @@ public final class EmailServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Nuevo método para ver la bandeja de entrada
-     * </pre>
      */
     public email.EmailOuterClass.BandejaResponse verBandeja(email.EmailOuterClass.BandejaRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -303,9 +294,6 @@ public final class EmailServiceGrpc {
     }
 
     /**
-     * <pre>
-     * Nuevo método para ver la bandeja de entrada
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<email.EmailOuterClass.BandejaResponse> verBandeja(
         email.EmailOuterClass.BandejaRequest request) {

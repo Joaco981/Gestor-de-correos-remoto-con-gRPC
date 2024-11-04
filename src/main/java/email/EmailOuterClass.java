@@ -3234,16 +3234,19 @@ public final class EmailOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string email = 1;</code>
+     * <code>.email.Email email = 1;</code>
+     * @return Whether the email field is set.
+     */
+    boolean hasEmail();
+    /**
+     * <code>.email.Email email = 1;</code>
      * @return The email.
      */
-    java.lang.String getEmail();
+    email.EmailOuterClass.Email getEmail();
     /**
-     * <code>string email = 1;</code>
-     * @return The bytes for email.
+     * <code>.email.Email email = 1;</code>
      */
-    com.google.protobuf.ByteString
-        getEmailBytes();
+    email.EmailOuterClass.EmailOrBuilder getEmailOrBuilder();
 
     /**
      * <code>string clientId = 2;</code>
@@ -3285,7 +3288,6 @@ public final class EmailOuterClass {
       super(builder);
     }
     private ReceiveRequest() {
-      email_ = "";
       clientId_ = "";
     }
 
@@ -3302,43 +3304,31 @@ public final class EmailOuterClass {
               email.EmailOuterClass.ReceiveRequest.class, email.EmailOuterClass.ReceiveRequest.Builder.class);
     }
 
+    private int bitField0_;
     public static final int EMAIL_FIELD_NUMBER = 1;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object email_ = "";
+    private email.EmailOuterClass.Email email_;
     /**
-     * <code>string email = 1;</code>
+     * <code>.email.Email email = 1;</code>
+     * @return Whether the email field is set.
+     */
+    @java.lang.Override
+    public boolean hasEmail() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>.email.Email email = 1;</code>
      * @return The email.
      */
     @java.lang.Override
-    public java.lang.String getEmail() {
-      java.lang.Object ref = email_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        email_ = s;
-        return s;
-      }
+    public email.EmailOuterClass.Email getEmail() {
+      return email_ == null ? email.EmailOuterClass.Email.getDefaultInstance() : email_;
     }
     /**
-     * <code>string email = 1;</code>
-     * @return The bytes for email.
+     * <code>.email.Email email = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString
-        getEmailBytes() {
-      java.lang.Object ref = email_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        email_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public email.EmailOuterClass.EmailOrBuilder getEmailOrBuilder() {
+      return email_ == null ? email.EmailOuterClass.Email.getDefaultInstance() : email_;
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 2;
@@ -3405,8 +3395,8 @@ public final class EmailOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(email_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 1, email_);
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(1, getEmail());
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 2, clientId_);
@@ -3423,8 +3413,9 @@ public final class EmailOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(email_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, email_);
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getEmail());
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(2, clientId_);
@@ -3448,8 +3439,11 @@ public final class EmailOuterClass {
       }
       email.EmailOuterClass.ReceiveRequest other = (email.EmailOuterClass.ReceiveRequest) obj;
 
-      if (!getEmail()
-          .equals(other.getEmail())) return false;
+      if (hasEmail() != other.hasEmail()) return false;
+      if (hasEmail()) {
+        if (!getEmail()
+            .equals(other.getEmail())) return false;
+      }
       if (!getClientId()
           .equals(other.getClientId())) return false;
       if (getLastReceivedIndex()
@@ -3465,8 +3459,10 @@ public final class EmailOuterClass {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + EMAIL_FIELD_NUMBER;
-      hash = (53 * hash) + getEmail().hashCode();
+      if (hasEmail()) {
+        hash = (37 * hash) + EMAIL_FIELD_NUMBER;
+        hash = (53 * hash) + getEmail().hashCode();
+      }
       hash = (37 * hash) + CLIENTID_FIELD_NUMBER;
       hash = (53 * hash) + getClientId().hashCode();
       hash = (37 * hash) + LASTRECEIVEDINDEX_FIELD_NUMBER;
@@ -3590,19 +3586,29 @@ public final class EmailOuterClass {
 
       // Construct using email.EmailOuterClass.ReceiveRequest.newBuilder()
       private Builder() {
-
+        maybeForceBuilderInitialization();
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
-
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          getEmailFieldBuilder();
+        }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        email_ = "";
+        email_ = null;
+        if (emailBuilder_ != null) {
+          emailBuilder_.dispose();
+          emailBuilder_ = null;
+        }
         clientId_ = "";
         lastReceivedIndex_ = 0;
         return this;
@@ -3638,8 +3644,12 @@ public final class EmailOuterClass {
 
       private void buildPartial0(email.EmailOuterClass.ReceiveRequest result) {
         int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.email_ = email_;
+          result.email_ = emailBuilder_ == null
+              ? email_
+              : emailBuilder_.build();
+          to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.clientId_ = clientId_;
@@ -3647,6 +3657,7 @@ public final class EmailOuterClass {
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.lastReceivedIndex_ = lastReceivedIndex_;
         }
+        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -3661,10 +3672,8 @@ public final class EmailOuterClass {
 
       public Builder mergeFrom(email.EmailOuterClass.ReceiveRequest other) {
         if (other == email.EmailOuterClass.ReceiveRequest.getDefaultInstance()) return this;
-        if (!other.getEmail().isEmpty()) {
-          email_ = other.email_;
-          bitField0_ |= 0x00000001;
-          onChanged();
+        if (other.hasEmail()) {
+          mergeEmail(other.getEmail());
         }
         if (!other.getClientId().isEmpty()) {
           clientId_ = other.clientId_;
@@ -3701,7 +3710,9 @@ public final class EmailOuterClass {
                 done = true;
                 break;
               case 10: {
-                email_ = input.readStringRequireUtf8();
+                input.readMessage(
+                    getEmailFieldBuilder().getBuilder(),
+                    extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
@@ -3732,76 +3743,125 @@ public final class EmailOuterClass {
       }
       private int bitField0_;
 
-      private java.lang.Object email_ = "";
+      private email.EmailOuterClass.Email email_;
+      private com.google.protobuf.SingleFieldBuilder<
+          email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder> emailBuilder_;
       /**
-       * <code>string email = 1;</code>
+       * <code>.email.Email email = 1;</code>
+       * @return Whether the email field is set.
+       */
+      public boolean hasEmail() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>.email.Email email = 1;</code>
        * @return The email.
        */
-      public java.lang.String getEmail() {
-        java.lang.Object ref = email_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          email_ = s;
-          return s;
+      public email.EmailOuterClass.Email getEmail() {
+        if (emailBuilder_ == null) {
+          return email_ == null ? email.EmailOuterClass.Email.getDefaultInstance() : email_;
         } else {
-          return (java.lang.String) ref;
+          return emailBuilder_.getMessage();
         }
       }
       /**
-       * <code>string email = 1;</code>
-       * @return The bytes for email.
+       * <code>.email.Email email = 1;</code>
        */
-      public com.google.protobuf.ByteString
-          getEmailBytes() {
-        java.lang.Object ref = email_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          email_ = b;
-          return b;
+      public Builder setEmail(email.EmailOuterClass.Email value) {
+        if (emailBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          email_ = value;
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          emailBuilder_.setMessage(value);
         }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
       }
       /**
-       * <code>string email = 1;</code>
-       * @param value The email to set.
-       * @return This builder for chaining.
+       * <code>.email.Email email = 1;</code>
        */
       public Builder setEmail(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        email_ = value;
+          email.EmailOuterClass.Email.Builder builderForValue) {
+        if (emailBuilder_ == null) {
+          email_ = builderForValue.build();
+        } else {
+          emailBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
-       * <code>string email = 1;</code>
-       * @return This builder for chaining.
+       * <code>.email.Email email = 1;</code>
+       */
+      public Builder mergeEmail(email.EmailOuterClass.Email value) {
+        if (emailBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            email_ != null &&
+            email_ != email.EmailOuterClass.Email.getDefaultInstance()) {
+            getEmailBuilder().mergeFrom(value);
+          } else {
+            email_ = value;
+          }
+        } else {
+          emailBuilder_.mergeFrom(value);
+        }
+        if (email_ != null) {
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>.email.Email email = 1;</code>
        */
       public Builder clearEmail() {
-        email_ = getDefaultInstance().getEmail();
         bitField0_ = (bitField0_ & ~0x00000001);
+        email_ = null;
+        if (emailBuilder_ != null) {
+          emailBuilder_.dispose();
+          emailBuilder_ = null;
+        }
         onChanged();
         return this;
       }
       /**
-       * <code>string email = 1;</code>
-       * @param value The bytes for email to set.
-       * @return This builder for chaining.
+       * <code>.email.Email email = 1;</code>
        */
-      public Builder setEmailBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        email_ = value;
+      public email.EmailOuterClass.Email.Builder getEmailBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
-        return this;
+        return getEmailFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.email.Email email = 1;</code>
+       */
+      public email.EmailOuterClass.EmailOrBuilder getEmailOrBuilder() {
+        if (emailBuilder_ != null) {
+          return emailBuilder_.getMessageOrBuilder();
+        } else {
+          return email_ == null ?
+              email.EmailOuterClass.Email.getDefaultInstance() : email_;
+        }
+      }
+      /**
+       * <code>.email.Email email = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder> 
+          getEmailFieldBuilder() {
+        if (emailBuilder_ == null) {
+          emailBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder>(
+                  getEmail(),
+                  getParentForChildren(),
+                  isClean());
+          email_ = null;
+        }
+        return emailBuilder_;
       }
 
       private java.lang.Object clientId_ = "";
@@ -3964,30 +4024,21 @@ public final class EmailOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * Dirección de correo del cliente
-     * </pre>
-     *
-     * <code>string clientEmail = 1;</code>
+     * <code>.email.Contacto clientEmail = 1;</code>
+     * @return Whether the clientEmail field is set.
+     */
+    boolean hasClientEmail();
+    /**
+     * <code>.email.Contacto clientEmail = 1;</code>
      * @return The clientEmail.
      */
-    java.lang.String getClientEmail();
+    email.EmailOuterClass.Contacto getClientEmail();
     /**
-     * <pre>
-     * Dirección de correo del cliente
-     * </pre>
-     *
-     * <code>string clientEmail = 1;</code>
-     * @return The bytes for clientEmail.
+     * <code>.email.Contacto clientEmail = 1;</code>
      */
-    com.google.protobuf.ByteString
-        getClientEmailBytes();
+    email.EmailOuterClass.ContactoOrBuilder getClientEmailOrBuilder();
   }
   /**
-   * <pre>
-   * Definir BandejaRequest y BandejaResponse para el nuevo método VerBandeja
-   * </pre>
-   *
    * Protobuf type {@code email.BandejaRequest}
    */
   public static final class BandejaRequest extends
@@ -4009,7 +4060,6 @@ public final class EmailOuterClass {
       super(builder);
     }
     private BandejaRequest() {
-      clientEmail_ = "";
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -4025,51 +4075,31 @@ public final class EmailOuterClass {
               email.EmailOuterClass.BandejaRequest.class, email.EmailOuterClass.BandejaRequest.Builder.class);
     }
 
+    private int bitField0_;
     public static final int CLIENTEMAIL_FIELD_NUMBER = 1;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object clientEmail_ = "";
+    private email.EmailOuterClass.Contacto clientEmail_;
     /**
-     * <pre>
-     * Dirección de correo del cliente
-     * </pre>
-     *
-     * <code>string clientEmail = 1;</code>
+     * <code>.email.Contacto clientEmail = 1;</code>
+     * @return Whether the clientEmail field is set.
+     */
+    @java.lang.Override
+    public boolean hasClientEmail() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>.email.Contacto clientEmail = 1;</code>
      * @return The clientEmail.
      */
     @java.lang.Override
-    public java.lang.String getClientEmail() {
-      java.lang.Object ref = clientEmail_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        clientEmail_ = s;
-        return s;
-      }
+    public email.EmailOuterClass.Contacto getClientEmail() {
+      return clientEmail_ == null ? email.EmailOuterClass.Contacto.getDefaultInstance() : clientEmail_;
     }
     /**
-     * <pre>
-     * Dirección de correo del cliente
-     * </pre>
-     *
-     * <code>string clientEmail = 1;</code>
-     * @return The bytes for clientEmail.
+     * <code>.email.Contacto clientEmail = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString
-        getClientEmailBytes() {
-      java.lang.Object ref = clientEmail_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        clientEmail_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public email.EmailOuterClass.ContactoOrBuilder getClientEmailOrBuilder() {
+      return clientEmail_ == null ? email.EmailOuterClass.Contacto.getDefaultInstance() : clientEmail_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4086,8 +4116,8 @@ public final class EmailOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientEmail_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 1, clientEmail_);
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(1, getClientEmail());
       }
       getUnknownFields().writeTo(output);
     }
@@ -4098,8 +4128,9 @@ public final class EmailOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientEmail_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, clientEmail_);
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getClientEmail());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -4116,8 +4147,11 @@ public final class EmailOuterClass {
       }
       email.EmailOuterClass.BandejaRequest other = (email.EmailOuterClass.BandejaRequest) obj;
 
-      if (!getClientEmail()
-          .equals(other.getClientEmail())) return false;
+      if (hasClientEmail() != other.hasClientEmail()) return false;
+      if (hasClientEmail()) {
+        if (!getClientEmail()
+            .equals(other.getClientEmail())) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -4129,8 +4163,10 @@ public final class EmailOuterClass {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CLIENTEMAIL_FIELD_NUMBER;
-      hash = (53 * hash) + getClientEmail().hashCode();
+      if (hasClientEmail()) {
+        hash = (37 * hash) + CLIENTEMAIL_FIELD_NUMBER;
+        hash = (53 * hash) + getClientEmail().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4229,10 +4265,6 @@ public final class EmailOuterClass {
       return builder;
     }
     /**
-     * <pre>
-     * Definir BandejaRequest y BandejaResponse para el nuevo método VerBandeja
-     * </pre>
-     *
      * Protobuf type {@code email.BandejaRequest}
      */
     public static final class Builder extends
@@ -4254,19 +4286,29 @@ public final class EmailOuterClass {
 
       // Construct using email.EmailOuterClass.BandejaRequest.newBuilder()
       private Builder() {
-
+        maybeForceBuilderInitialization();
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
-
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          getClientEmailFieldBuilder();
+        }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        clientEmail_ = "";
+        clientEmail_ = null;
+        if (clientEmailBuilder_ != null) {
+          clientEmailBuilder_.dispose();
+          clientEmailBuilder_ = null;
+        }
         return this;
       }
 
@@ -4300,9 +4342,14 @@ public final class EmailOuterClass {
 
       private void buildPartial0(email.EmailOuterClass.BandejaRequest result) {
         int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.clientEmail_ = clientEmail_;
+          result.clientEmail_ = clientEmailBuilder_ == null
+              ? clientEmail_
+              : clientEmailBuilder_.build();
+          to_bitField0_ |= 0x00000001;
         }
+        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -4317,10 +4364,8 @@ public final class EmailOuterClass {
 
       public Builder mergeFrom(email.EmailOuterClass.BandejaRequest other) {
         if (other == email.EmailOuterClass.BandejaRequest.getDefaultInstance()) return this;
-        if (!other.getClientEmail().isEmpty()) {
-          clientEmail_ = other.clientEmail_;
-          bitField0_ |= 0x00000001;
-          onChanged();
+        if (other.hasClientEmail()) {
+          mergeClientEmail(other.getClientEmail());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -4349,7 +4394,9 @@ public final class EmailOuterClass {
                 done = true;
                 break;
               case 10: {
-                clientEmail_ = input.readStringRequireUtf8();
+                input.readMessage(
+                    getClientEmailFieldBuilder().getBuilder(),
+                    extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
@@ -4370,96 +4417,125 @@ public final class EmailOuterClass {
       }
       private int bitField0_;
 
-      private java.lang.Object clientEmail_ = "";
+      private email.EmailOuterClass.Contacto clientEmail_;
+      private com.google.protobuf.SingleFieldBuilder<
+          email.EmailOuterClass.Contacto, email.EmailOuterClass.Contacto.Builder, email.EmailOuterClass.ContactoOrBuilder> clientEmailBuilder_;
       /**
-       * <pre>
-       * Dirección de correo del cliente
-       * </pre>
-       *
-       * <code>string clientEmail = 1;</code>
+       * <code>.email.Contacto clientEmail = 1;</code>
+       * @return Whether the clientEmail field is set.
+       */
+      public boolean hasClientEmail() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>.email.Contacto clientEmail = 1;</code>
        * @return The clientEmail.
        */
-      public java.lang.String getClientEmail() {
-        java.lang.Object ref = clientEmail_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          clientEmail_ = s;
-          return s;
+      public email.EmailOuterClass.Contacto getClientEmail() {
+        if (clientEmailBuilder_ == null) {
+          return clientEmail_ == null ? email.EmailOuterClass.Contacto.getDefaultInstance() : clientEmail_;
         } else {
-          return (java.lang.String) ref;
+          return clientEmailBuilder_.getMessage();
         }
       }
       /**
-       * <pre>
-       * Dirección de correo del cliente
-       * </pre>
-       *
-       * <code>string clientEmail = 1;</code>
-       * @return The bytes for clientEmail.
+       * <code>.email.Contacto clientEmail = 1;</code>
        */
-      public com.google.protobuf.ByteString
-          getClientEmailBytes() {
-        java.lang.Object ref = clientEmail_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          clientEmail_ = b;
-          return b;
+      public Builder setClientEmail(email.EmailOuterClass.Contacto value) {
+        if (clientEmailBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          clientEmail_ = value;
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          clientEmailBuilder_.setMessage(value);
         }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
       }
       /**
-       * <pre>
-       * Dirección de correo del cliente
-       * </pre>
-       *
-       * <code>string clientEmail = 1;</code>
-       * @param value The clientEmail to set.
-       * @return This builder for chaining.
+       * <code>.email.Contacto clientEmail = 1;</code>
        */
       public Builder setClientEmail(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        clientEmail_ = value;
+          email.EmailOuterClass.Contacto.Builder builderForValue) {
+        if (clientEmailBuilder_ == null) {
+          clientEmail_ = builderForValue.build();
+        } else {
+          clientEmailBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
-       * <pre>
-       * Dirección de correo del cliente
-       * </pre>
-       *
-       * <code>string clientEmail = 1;</code>
-       * @return This builder for chaining.
+       * <code>.email.Contacto clientEmail = 1;</code>
+       */
+      public Builder mergeClientEmail(email.EmailOuterClass.Contacto value) {
+        if (clientEmailBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            clientEmail_ != null &&
+            clientEmail_ != email.EmailOuterClass.Contacto.getDefaultInstance()) {
+            getClientEmailBuilder().mergeFrom(value);
+          } else {
+            clientEmail_ = value;
+          }
+        } else {
+          clientEmailBuilder_.mergeFrom(value);
+        }
+        if (clientEmail_ != null) {
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>.email.Contacto clientEmail = 1;</code>
        */
       public Builder clearClientEmail() {
-        clientEmail_ = getDefaultInstance().getClientEmail();
         bitField0_ = (bitField0_ & ~0x00000001);
+        clientEmail_ = null;
+        if (clientEmailBuilder_ != null) {
+          clientEmailBuilder_.dispose();
+          clientEmailBuilder_ = null;
+        }
         onChanged();
         return this;
       }
       /**
-       * <pre>
-       * Dirección de correo del cliente
-       * </pre>
-       *
-       * <code>string clientEmail = 1;</code>
-       * @param value The bytes for clientEmail to set.
-       * @return This builder for chaining.
+       * <code>.email.Contacto clientEmail = 1;</code>
        */
-      public Builder setClientEmailBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        clientEmail_ = value;
+      public email.EmailOuterClass.Contacto.Builder getClientEmailBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
-        return this;
+        return getClientEmailFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.email.Contacto clientEmail = 1;</code>
+       */
+      public email.EmailOuterClass.ContactoOrBuilder getClientEmailOrBuilder() {
+        if (clientEmailBuilder_ != null) {
+          return clientEmailBuilder_.getMessageOrBuilder();
+        } else {
+          return clientEmail_ == null ?
+              email.EmailOuterClass.Contacto.getDefaultInstance() : clientEmail_;
+        }
+      }
+      /**
+       * <code>.email.Contacto clientEmail = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          email.EmailOuterClass.Contacto, email.EmailOuterClass.Contacto.Builder, email.EmailOuterClass.ContactoOrBuilder> 
+          getClientEmailFieldBuilder() {
+        if (clientEmailBuilder_ == null) {
+          clientEmailBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              email.EmailOuterClass.Contacto, email.EmailOuterClass.Contacto.Builder, email.EmailOuterClass.ContactoOrBuilder>(
+                  getClientEmail(),
+                  getParentForChildren(),
+                  isClean());
+          clientEmail_ = null;
+        }
+        return clientEmailBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:email.BandejaRequest)
@@ -4518,44 +4594,24 @@ public final class EmailOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     java.util.List<email.EmailOuterClass.Email> 
         getBandejaEntradaList();
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     email.EmailOuterClass.Email getBandejaEntrada(int index);
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     int getBandejaEntradaCount();
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
         getBandejaEntradaOrBuilderList();
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     email.EmailOuterClass.EmailOrBuilder getBandejaEntradaOrBuilder(
@@ -4628,10 +4684,6 @@ public final class EmailOuterClass {
     @SuppressWarnings("serial")
     private java.util.List<email.EmailOuterClass.Email> bandejaEntrada_;
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     @java.lang.Override
@@ -4639,10 +4691,6 @@ public final class EmailOuterClass {
       return bandejaEntrada_;
     }
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     @java.lang.Override
@@ -4651,10 +4699,6 @@ public final class EmailOuterClass {
       return bandejaEntrada_;
     }
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     @java.lang.Override
@@ -4662,10 +4706,6 @@ public final class EmailOuterClass {
       return bandejaEntrada_.size();
     }
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     @java.lang.Override
@@ -4673,10 +4713,6 @@ public final class EmailOuterClass {
       return bandejaEntrada_.get(index);
     }
     /**
-     * <pre>
-     * Lista de correos en la bandeja de entrada
-     * </pre>
-     *
      * <code>repeated .email.Email bandejaEntrada = 1;</code>
      */
     @java.lang.Override
@@ -5149,10 +5185,6 @@ public final class EmailOuterClass {
           email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder> bandejaEntradaBuilder_;
 
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public java.util.List<email.EmailOuterClass.Email> getBandejaEntradaList() {
@@ -5163,10 +5195,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public int getBandejaEntradaCount() {
@@ -5177,10 +5205,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public email.EmailOuterClass.Email getBandejaEntrada(int index) {
@@ -5191,10 +5215,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public Builder setBandejaEntrada(
@@ -5212,10 +5232,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public Builder setBandejaEntrada(
@@ -5230,10 +5246,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public Builder addBandejaEntrada(email.EmailOuterClass.Email value) {
@@ -5250,10 +5262,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public Builder addBandejaEntrada(
@@ -5271,10 +5279,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public Builder addBandejaEntrada(
@@ -5289,10 +5293,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public Builder addBandejaEntrada(
@@ -5307,10 +5307,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public Builder addAllBandejaEntrada(
@@ -5326,10 +5322,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public Builder clearBandejaEntrada() {
@@ -5343,10 +5335,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public Builder removeBandejaEntrada(int index) {
@@ -5360,10 +5348,6 @@ public final class EmailOuterClass {
         return this;
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public email.EmailOuterClass.Email.Builder getBandejaEntradaBuilder(
@@ -5371,10 +5355,6 @@ public final class EmailOuterClass {
         return getBandejaEntradaFieldBuilder().getBuilder(index);
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public email.EmailOuterClass.EmailOrBuilder getBandejaEntradaOrBuilder(
@@ -5385,10 +5365,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
@@ -5400,10 +5376,6 @@ public final class EmailOuterClass {
         }
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public email.EmailOuterClass.Email.Builder addBandejaEntradaBuilder() {
@@ -5411,10 +5383,6 @@ public final class EmailOuterClass {
             email.EmailOuterClass.Email.getDefaultInstance());
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public email.EmailOuterClass.Email.Builder addBandejaEntradaBuilder(
@@ -5423,10 +5391,6 @@ public final class EmailOuterClass {
             index, email.EmailOuterClass.Email.getDefaultInstance());
       }
       /**
-       * <pre>
-       * Lista de correos en la bandeja de entrada
-       * </pre>
-       *
        * <code>repeated .email.Email bandejaEntrada = 1;</code>
        */
       public java.util.List<email.EmailOuterClass.Email.Builder> 
@@ -5791,17 +5755,18 @@ public final class EmailOuterClass {
       "eto\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\"+\n\014EmailRequest" +
       "\022\033\n\005email\030\001 \001(\0132\014.email.Email\"1\n\rEmailRe" +
       "sponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t" +
-      "\"L\n\016ReceiveRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010cli" +
-      "entId\030\002 \001(\t\022\031\n\021lastReceivedIndex\030\003 \001(\005\"%" +
-      "\n\016BandejaRequest\022\023\n\013clientEmail\030\001 \001(\t\"^\n" +
-      "\017BandejaResponse\022$\n\016bandejaEntrada\030\001 \003(\013" +
-      "2\014.email.Email\022%\n\017bandejaEnviados\030\002 \003(\0132" +
-      "\014.email.Email2\275\001\n\014EmailService\0228\n\013Enviar" +
-      "Email\022\023.email.EmailRequest\032\024.email.Email" +
-      "Response\0226\n\rRecibirEmails\022\025.email.Receiv" +
-      "eRequest\032\014.email.Email0\001\022;\n\nVerBandeja\022\025" +
-      ".email.BandejaRequest\032\026.email.BandejaRes" +
-      "ponseb\006proto3"
+      "\"Z\n\016ReceiveRequest\022\033\n\005email\030\001 \001(\0132\014.emai" +
+      "l.Email\022\020\n\010clientId\030\002 \001(\t\022\031\n\021lastReceive" +
+      "dIndex\030\003 \001(\005\"6\n\016BandejaRequest\022$\n\013client" +
+      "Email\030\001 \001(\0132\017.email.Contacto\"^\n\017BandejaR" +
+      "esponse\022$\n\016bandejaEntrada\030\001 \003(\0132\014.email." +
+      "Email\022%\n\017bandejaEnviados\030\002 \003(\0132\014.email.E" +
+      "mail2\275\001\n\014EmailService\0228\n\013EnviarEmail\022\023.e" +
+      "mail.EmailRequest\032\024.email.EmailResponse\022" +
+      "6\n\rRecibirEmails\022\025.email.ReceiveRequest\032" +
+      "\014.email.Email0\001\022;\n\nVerBandeja\022\025.email.Ba" +
+      "ndejaRequest\032\026.email.BandejaResponseb\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
