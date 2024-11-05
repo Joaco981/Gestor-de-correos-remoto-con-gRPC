@@ -21,6 +21,9 @@ public class EmailClient {
     private final Contacto contactoJoaquin;
     private final Contacto contactoCandela;
     private final Contacto contactoCarla;
+    private final Contacto contactoRodri;
+    private final Contacto contactoIvan;
+    private final Contacto contactoAugusto;
 
     public EmailClient(String host, int port, String clienteEmail) {
         this.channel = ManagedChannelBuilder.forAddress(host, port)
@@ -34,6 +37,9 @@ public class EmailClient {
         contactoJoaquin = new Contacto("Joaquin Flores", "joaquin@gmail.com");
         contactoCandela = new Contacto("Candela Cano", "cande@gmail.com");
         contactoCarla = new Contacto("Carla Marturet", "carla@gmail.com");
+        contactoRodri = new Contacto("Rodrigo Magallanes", "rodrigo@gmail.com");
+        contactoIvan = new Contacto("Ivan Caceres", "ivan@gmail.com");
+        contactoAugusto = new Contacto("Augusto", "augusto@gmail.com");
     }
 
     public void enviarEmail(Email email) {
@@ -59,7 +65,7 @@ public class EmailClient {
 
         System.out.println("Correo enviado a los destinatarios:");
         for (EmailOuterClass.Contacto destinatario : emailProto.getDestinatariosList()) {
-            System.out.println(destinatario.getNombreCompleto() + " (" + destinatario.getEmail() + ")");
+            System.out.println("-" + destinatario.getNombreCompleto() + " (" + destinatario.getEmail() + ")");
         }
         System.out.println(response.getMessage());
 
@@ -70,7 +76,7 @@ public class EmailClient {
     public void verBandeja() {
         try {
             EmailOuterClass.Contacto clientContacto = EmailOuterClass.Contacto.newBuilder()
-                .setNombreCompleto("") // Puedes ajustar según sea necesario
+                .setNombreCompleto("") // Puedes ajustar segÃºn sea necesario
                 .setEmail(clienteEmail)
                 .build();
 
@@ -207,42 +213,74 @@ public class EmailClient {
 
     public static void main(String[] args) {
         if (args.length < 2 || (!args[0].equals("send") && !args[0].equals("receive") && !args[0].equals("show"))) {
-            System.out.println("Uso para enviar: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"send <email> <nombreGrupo> <excluirEmail>\"");
-            System.out.println("Uso para recibir: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"receive <email>\"");
-            System.out.println("Uso para mostrar bandejas: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"show <email>\"");
-            return;
+            System.out.println("Uso para enviar a una persona: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <destinatarioEmail>\"");
+            System.out.println("Uso para enviar a un grupo: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <nombreGrupo> <excluirEmail>\"");
+            System.out.println("Uso para recibir correos: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"recibir <emailDelCliente>\"");
+            System.out.println("Uso para mostrar bandeja: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"visualizar <emailDelCliente>\"");
+            System.exit(0);
         }
 
-        String mode = args[0];
         String clienteEmail = args[1];
         EmailClient client = new EmailClient("localhost", 50051, clienteEmail);
 
-        if (mode.equals("send")) {
-            String nombreGrupo = args[2];
-            String excluirEmail = args[3];
+        if (args[0].equals("enviar")) {
+            if (args.length == 4) { // EnvÃ­o a grupo
+                String nombreGrupo = args[2];
+                String excluirEmail = args[3];
+                
+                Email email = new Email();
+                email.setAsunto("Hola a todos");
+                email.setContenido("Este es un correo de prueba para el grupo.");
 
-            Email email = new Email();
-            email.setAsunto("Hola a todos");
-            email.setContenido("Este es un correo de prueba para el grupo.");
-            email.setRemitente(client.contactoJoaquin);
+                // Cambiar el remitente al email ingresado por argumento
+                email.setRemitente(client.obtenerContactoPorEmail(clienteEmail));
 
-            GrupoDeUsuarios grupo = new GrupoDeUsuarios(nombreGrupo);
-            grupo.agregarAlGrupo(client.contactoCandela);
-            grupo.agregarAlGrupo(client.contactoCarla);
+                GrupoDeUsuarios grupo = new GrupoDeUsuarios(nombreGrupo);
+                grupo.agregarAlGrupo(client.contactoCandela);
+                grupo.agregarAlGrupo(client.contactoCarla);
+                grupo.agregarAlGrupo(client.contactoJoaquin);
 
-            for (Contacto contacto : grupo.getContactos()) {
-                if (!contacto.getEmail().equals(excluirEmail)) {
-                    email.agregarDestinatario(contacto);
+                for (Contacto contacto : grupo.getContactos()) {
+                    if (!contacto.getEmail().equals(excluirEmail)) {
+                        email.agregarDestinatario(contacto);
+                    }
                 }
-            }
 
-            client.enviarEmail(email);
-        } else if (mode.equals("receive")) {
+                client.enviarEmail(email);
+            } else if (args.length == 3) { // EnvÃ­o a persona
+                String destinatarioEmail = args[2];
+                
+                Email email = new Email();
+                email.setAsunto("Hola");
+                email.setContenido("Este es un correo de prueba para ti.");
+            
+                // Asignar remitente y destinatario
+                email.setRemitente(client.obtenerContactoPorEmail(clienteEmail));
+                email.agregarDestinatario(client.obtenerContactoPorEmail(destinatarioEmail));
+            
+                client.enviarEmail(email);
+            } else {
+                System.out.println("ERROR: Uso incorrecto");
+                System.out.println("Uso para enviar: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <destinatarioEmail>\" para una persona");
+                System.out.println("Uso para enviar: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <nombreGrupo> <excluirEmail>\" para un grupo");
+            }
+        } else if (args[0].equals("recibir")) {
             client.recibirEmails();
-        } else if (mode.equals("show")) {
+        } else if (args[0].equals("visualizar")) {
             client.verBandeja();
         }
 
         client.shutdown();
     }
+
+    private Contacto obtenerContactoPorEmail(String email) {
+        if (email.equals(contactoJoaquin.getEmail())) return contactoJoaquin;
+        if (email.equals(contactoCandela.getEmail())) return contactoCandela;
+        if (email.equals(contactoCarla.getEmail())) return contactoCarla;
+        if (email.equals(contactoRodri.getEmail())) return contactoRodri;
+        if (email.equals(contactoIvan.getEmail())) return contactoIvan;
+        if (email.equals(contactoAugusto.getEmail())) return contactoAugusto;
+        return new Contacto("Desconocido", email); // Devuelve un contacto con "Desconocido" si no se encuentra.
+    }
+    
 }
