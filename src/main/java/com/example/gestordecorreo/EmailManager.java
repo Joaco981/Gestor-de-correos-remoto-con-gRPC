@@ -14,12 +14,19 @@ public class EmailManager {
 
     public void enviarEmailAGrupo(Email email, GrupoDeUsuarios grupo, ArrayList<Contacto> excluirContactos) {
         for (Contacto contacto : grupo.getContactos()) {
-            if (!excluirContactos.contains(contacto)) {
-                email.agregarDestinatario(contacto);
-                contacto.bandeja.getBandejaEntrada().add(email);
-            }
+            email.agregarDestinatario(contacto);
+            contacto.bandeja.getBandejaEntrada().add(email);
+        }
+        for (Contacto contacto : excluirContactos) {
+            excluirContacto(email, contacto); 
+            contacto.bandeja.getBandejaEntrada().remove(email);
         }
         email.getRemitente().bandeja.getBandejaEnviados().add(email);
+    }
+    
+
+    public void excluirContacto(Email email, Contacto contacto) {
+        email.getDestinatarios().remove(contacto);
     }
 
     public void borrarEmail(ArrayList<Email> bandeja, Email emailAEliminar) {

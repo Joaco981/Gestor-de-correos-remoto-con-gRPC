@@ -230,5 +230,30 @@ public class EmailTest {
     }
 
     
+    @Test
+    void crear_un_email_y_excluir_destinatario(){
+        Email e1 = new Email();
+        EmailManager em1 = new EmailManager();
+        Contacto persona1 = new Contacto("Joaquin Flores", "joaco@gmail.com");
+        Contacto persona2 = new Contacto("Candela Cano", "candelaria@gmail.com");
+        Contacto persona3 = new Contacto("Carla Marturet", "carla@gmail.com");
+        //Prueba de que el email es valido
+        assertTrue(persona1.validarEmail(persona1.getEmail()));
+        assertTrue(persona2.validarEmail(persona2.getEmail()));
+
+        e1.setAsunto("Trabajo");
+        e1.setContenido("Quiero consultar mis horarios");
+        e1.setRemitente(persona1);
+        e1.agregarDestinatario(persona2);
+        e1.agregarDestinatario(persona3);
+
+        em1.excluirContacto(e1, persona3);
+        em1.enviarEmail(e1);
+
+        assertTrue(persona1.bandeja.getBandejaEnviados().size() == 1);
+        assertTrue(persona2.bandeja.getBandejaEntrada().size() == 1);
+        assertTrue(persona3.bandeja.getBandejaEntrada().isEmpty());
+    }
+    
     
 }

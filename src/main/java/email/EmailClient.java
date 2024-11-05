@@ -6,10 +6,7 @@ import io.grpc.stub.StreamObserver;
 import com.example.gestordecorreo.Email;
 import com.example.gestordecorreo.Contacto;
 import com.example.gestordecorreo.GrupoDeUsuarios;
-
-import java.util.ArrayList;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class EmailClient {
     private final ManagedChannel channel;
@@ -33,7 +30,6 @@ public class EmailClient {
         asyncStub = EmailServiceGrpc.newStub(channel);
         this.clienteEmail = clienteEmail;
 
-        // Inicializar contactos
         contactoJoaquin = new Contacto("Joaquin Flores", "joaquin@gmail.com");
         contactoCandela = new Contacto("Candela Cano", "cande@gmail.com");
         contactoCarla = new Contacto("Carla Marturet", "carla@gmail.com");
@@ -69,14 +65,13 @@ public class EmailClient {
         }
         System.out.println(response.getMessage());
 
-        // Agregar el email a la bandeja de enviados del remitente
         email.getRemitente().bandeja.getBandejaEnviados().add(email);
     }
 
     public void verBandeja() {
         try {
             EmailOuterClass.Contacto clientContacto = EmailOuterClass.Contacto.newBuilder()
-                .setNombreCompleto("") // Puedes ajustar segÃºn sea necesario
+                .setNombreCompleto("") 
                 .setEmail(clienteEmail)
                 .build();
 
@@ -86,9 +81,8 @@ public class EmailClient {
 
             EmailOuterClass.BandejaResponse response = blockingStub.verBandeja(request);
 
-            // Mostrar Bandeja de Entrada
-            System.out.println("Bandeja de Entrada de " + clienteEmail + ":");
-            System.out.println();
+            
+            System.out.println("BANDEJA DE ENTRADA DE " + clienteEmail + ":");
             for (EmailOuterClass.Email email : response.getBandejaEntradaList()) {
                 System.out.println("----------------------------------------");
                 System.out.println("Asunto: " + email.getAsunto());
@@ -98,9 +92,9 @@ public class EmailClient {
                 System.out.println();
             }
 
-            // Mostrar Bandeja de Enviados
+            
             System.out.println();
-            System.out.println("Bandeja de Enviados de " + clienteEmail + ":");
+            System.out.println("BANDEJA DE ENVIADOS DE " + clienteEmail + ":");
             for (EmailOuterClass.Email email : response.getBandejaEnviadosList()) {
                 System.out.println("----------------------------------------");
                 System.out.println("Asunto: " + email.getAsunto());
@@ -115,7 +109,7 @@ public class EmailClient {
     }
 
     public Email convertirEmail(EmailOuterClass.Email emailOuter) {
-        // Verificar y asignar el contacto existente como remitente
+        
         Contacto remitente;
         String remitenteEmail = emailOuter.getRemitente().getEmail();
 
@@ -212,7 +206,7 @@ public class EmailClient {
     }
 
     public static void main(String[] args) {
-        if (args.length < 2 || (!args[0].equals("send") && !args[0].equals("receive") && !args[0].equals("show"))) {
+        if (args.length < 2 || (!args[0].equals("enviar") && !args[0].equals("recibir") && !args[0].equals("visualizar"))) {
             System.out.println("Uso para enviar a una persona: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <destinatarioEmail>\"");
             System.out.println("Uso para enviar a un grupo: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <nombreGrupo> <excluirEmail>\"");
             System.out.println("Uso para recibir correos: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"recibir <emailDelCliente>\"");
