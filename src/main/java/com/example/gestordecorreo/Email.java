@@ -5,13 +5,16 @@ public class Email  {
     private String asunto;
     private String contenido;
     private Contacto remitente;
+    private String nombre; 
     private ArrayList<Contacto> destinatarios;
+    private ArrayList<Email> favoritos; 
+    
     
     //elemento del email
     public Email(){
         destinatarios = new ArrayList<Contacto>();
     }
-    
+   
     public String getAsunto(){
         return asunto;
     }
@@ -58,6 +61,15 @@ public class Email  {
     //    return correonuevo;
     //}
 
+    
+    public void marcarComoFav(Email favorito, Contacto persona) {
+         persona.bandeja.agregarFav(favorito);
+    }
+
+    public ArrayList<Email> getEmail() {
+        return favoritos;
+    }
+    
    
     
 }

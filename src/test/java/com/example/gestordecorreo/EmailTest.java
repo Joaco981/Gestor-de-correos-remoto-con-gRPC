@@ -75,7 +75,7 @@ public class EmailTest {
         em1.enviarEmail(e1);
         assertTrue(persona1.bandeja.getBandejaEnviados().size() == 1);
         assertTrue(persona2.bandeja.getBandejaEntrada().size() == 1);
-        assertTrue(persona3.bandeja.getBandejaEntrada().size() == 0);
+        assertTrue(persona3.bandeja.getBandejaEntrada().isEmpty());
 
         //Prueba de que el email es valido
         assertTrue(persona1.validarEmail(persona1.getEmail()));
@@ -193,7 +193,41 @@ public class EmailTest {
     }
 
 
+    @Test
+    void marcar_correo_como_favorito(){
+        Email e1 = new Email();
+		Email e2 = new Email();
+		
+        EmailManager em1 = new EmailManager();	
+        Contacto persona1 = new Contacto("Joaquin Flores", "joaco@gmail.com");
+        Contacto persona2 = new Contacto("Candela Cano", "candelaria@gmail.com"); 
 
+        //Prueba de que el email es valido
+        assertTrue(persona1.validarEmail(persona1.getEmail()));
+        assertTrue(persona2.validarEmail(persona2.getEmail()));
+		
+        //primer mail
+        e1.setAsunto("Trabajo");
+        e1.setContenido("Quiero consultar mis horarios");
+        e1.setRemitente(persona1);
+        e1.agregarDestinatario(persona2);
+
+        em1.enviarEmail(e1);
+
+		//segundo mail
+		e2.setAsunto("Universidad");
+		e2.setContenido("Subir las notas porfavor es importante");
+		e2.setRemitente(persona1);
+		e2.agregarDestinatario(persona2);
+
+		em1.enviarEmail(e2);
+
+        e2.marcarComoFav(e2, persona2);
+        
+        assertTrue(persona2.bandeja.getFavoritos().contains(e2));
+        assertFalse(persona2.bandeja.getFavoritos().contains(e1));
+
+    }
 
     
     

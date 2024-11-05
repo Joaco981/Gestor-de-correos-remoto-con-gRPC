@@ -7,14 +7,34 @@ import java.util.stream.Collectors;
 public class Bandeja  {
     private ArrayList<Email> bandejaEntrada = new ArrayList<>();
     private ArrayList<Email> bandejaEnviados = new ArrayList<>();
-
+    private ArrayList<Email> favoritos = new ArrayList<>();
   
+  
+
+public Bandeja(){
+    bandejaEntrada = new ArrayList<>();
+    bandejaEnviados = new ArrayList<>();
+    favoritos = new ArrayList<>();
+}
+
+public void agregarFav(Email email ){
+        if (!favoritos.contains(email) ){
+        favoritos.add(email);
+    }
+    
+}
+
+
 public ArrayList<Email> getBandejaEnviados(){
     return bandejaEnviados;
 }
 
 public ArrayList<Email> getBandejaEntrada(){
     return bandejaEntrada;
+}
+
+public ArrayList<Email> getFavoritos(){
+    return favoritos;
 }
 
 //metodos de filtros simples
@@ -52,6 +72,15 @@ public Predicate<Email> filtroPorDominio(String email){
     Predicate<Email> filtro= e -> e.getRemitente().getEmail().contains(email);
     return filtro; 
 }
+
+   
+
+
+
+
+
+
+
 
 
 }

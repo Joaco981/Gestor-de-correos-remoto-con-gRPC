@@ -1,9 +1,8 @@
 package com.example.gestordecorreo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class GrupoTest {
@@ -80,5 +79,7 @@ public class GrupoTest {
         assertEquals(1, contacto3.bandeja.getBandejaEntrada().size());
 
     }
+
+   
 
 }
