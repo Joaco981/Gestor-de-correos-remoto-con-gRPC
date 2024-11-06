@@ -61,8 +61,8 @@ public class Email  {
     //}
 
     
-    public void marcarComoFav(Email favorito, Contacto persona) {
-         persona.bandeja.agregarFav(favorito);
+    public void marcarComoFav( Contacto persona) {
+         persona.bandeja.agregarFav(this);
     }
 
     

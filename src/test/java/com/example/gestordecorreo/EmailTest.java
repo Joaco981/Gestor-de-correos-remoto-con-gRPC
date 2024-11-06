@@ -222,12 +222,12 @@ public class EmailTest {
 
 		em1.enviarEmail(e2);
 
-        e2.marcarComoFav(e2, persona2);
+        e2.marcarComoFav(persona2);
         
         assertTrue(persona2.bandeja.getFavoritos().contains(e2));
         assertFalse(persona2.bandeja.getFavoritos().contains(e1));
 
-        e2.marcarComoFav(e2, persona2);
+        e2.marcarComoFav(persona2);
         assertFalse(persona2.bandeja.getFavoritos().contains(e2));
 
     }
