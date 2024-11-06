@@ -65,6 +65,8 @@ public class Email  {
          persona.bandeja.agregarFav(favorito);
     }
 
+    
+
     public ArrayList<Email> getEmail() {
         return favoritos;
     }

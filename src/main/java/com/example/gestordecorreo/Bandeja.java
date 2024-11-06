@@ -13,9 +13,15 @@ public class Bandeja  {
     public void agregarFav(Email email ){
             if (!favoritos.contains(email) ){
             favoritos.add(email);
+        }else{
+            if (favoritos.contains(email)) {
+                 favoritos.remove(email);
+            }    
+           
         }
         
     }
+
 
     public ArrayList<Email> getBandejaEnviados(){
         return bandejaEnviados;
@@ -66,14 +72,5 @@ public class Bandeja  {
     }
 
     
-
-
-
-
-
-
-
-
-
 }
  
