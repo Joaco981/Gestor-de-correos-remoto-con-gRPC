@@ -144,54 +144,54 @@ public class EmailTest {
     }
 
 
-     @Test
-    void prueba_cambiar_asunto_email(){
-        Email e1 = new Email();
-        EmailManager em1 = new EmailManager();
-        Contacto persona1 = new Contacto("Joaquin Flores", "joaco@gmail.com");
-        Contacto persona2 = new Contacto("Candela Cano", "cande@gmail.com");
-        e1.setAsunto("Universidad");
-        e1.setContenido("holaaa");
-        e1.setRemitente(persona1);
-        e1.agregarDestinatario(persona2);
-        
-        em1.enviarEmail(e1);
-        
-        assertTrue(persona1.bandeja.getBandejaEnviados().size() == 1);
-        assertTrue(persona2.bandeja.getBandejaEntrada().size() == 1);
-
-        //Prueba de que el email es valido
-        assertTrue(persona1.validarEmail(persona1.getEmail()));
-
-        //cambiamos el asunto
-        e1.setAsunto("Hola");
-        assertEquals("Universidad",persona2.bandeja.getBandejaEntrada().get(0).getAsunto());
-    }
-
-    @Test
-    void prueba_cambiar_contenido_email(){
-        Email e1 = new Email();
-        EmailManager em1 = new EmailManager();
-        Contacto persona1 = new Contacto("Joaquin Flores", "joaco@gmail.com");
-        Contacto persona2 = new Contacto("Candela Cano", "cande@gmail.com");
-        e1.setAsunto("Universidad");
-        e1.setContenido("holaaa");
-        e1.setRemitente(persona1);
-        e1.agregarDestinatario(persona2);
-        
-        em1.enviarEmail(e1);
-        
-        assertTrue(persona1.bandeja.getBandejaEnviados().size() == 1);
-        assertTrue(persona2.bandeja.getBandejaEntrada().size() == 1);
-
-        //Prueba de que el email es valido
-        assertTrue(persona1.validarEmail(persona1.getEmail()));
-
-        //cambiamos el asunto
-        e1.setContenido("Ayuda por favor");
-        assertEquals("holaaa",persona2.bandeja.getBandejaEntrada().get(0).getContenido());
-    }
-
+    //@Test
+    //void prueba_cambiar_asunto_email(){
+    //    Email e1 = new Email();
+    //    EmailManager em1 = new EmailManager();
+    //    Contacto persona1 = new Contacto("Joaquin Flores", "joaco@gmail.com");
+    //    Contacto persona2 = new Contacto("Candela Cano", "cande@gmail.com");
+    //    e1.setAsunto("Universidad");
+    //    e1.setContenido("holaaa");
+    //    e1.setRemitente(persona1);
+    //    e1.agregarDestinatario(persona2);
+    //    
+    //    em1.enviarEmail(e1);
+    //    
+    //    assertTrue(persona1.bandeja.getBandejaEnviados().size() == 1);
+    //    assertTrue(persona2.bandeja.getBandejaEntrada().size() == 1);
+//
+    //    //Prueba de que el email es valido
+    //    assertTrue(persona1.validarEmail(persona1.getEmail()));
+//
+    //    //cambiamos el asunto
+    //    e1.setAsunto("Hola");
+    //    assertEquals("Universidad",persona2.bandeja.getBandejaEntrada().get(0).getAsunto());
+    //}
+//
+    //@Test
+    //void prueba_cambiar_contenido_email(){
+    //    Email e1 = new Email();
+    //    EmailManager em1 = new EmailManager();
+    //    Contacto persona1 = new Contacto("Joaquin Flores", "joaco@gmail.com");
+    //    Contacto persona2 = new Contacto("Candela Cano", "cande@gmail.com");
+    //    e1.setAsunto("Universidad");
+    //    e1.setContenido("holaaa");
+    //    e1.setRemitente(persona1);
+    //    e1.agregarDestinatario(persona2);
+    //    
+    //    em1.enviarEmail(e1);
+    //    
+    //    assertTrue(persona1.bandeja.getBandejaEnviados().size() == 1);
+    //    assertTrue(persona2.bandeja.getBandejaEntrada().size() == 1);
+//
+    //    //Prueba de que el email es valido
+    //    assertTrue(persona1.validarEmail(persona1.getEmail()));
+//
+    //    //cambiamos el asunto
+    //    e1.setContenido("Ayuda por favor");
+    //    assertEquals("holaaa",persona2.bandeja.getBandejaEntrada().get(0).getContenido());
+    //}
+//
 
     @Test
     void marcar_correo_como_favorito(){

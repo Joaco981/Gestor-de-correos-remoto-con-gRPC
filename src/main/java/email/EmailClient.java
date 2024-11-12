@@ -8,6 +8,7 @@ import com.example.gestordecorreo.Contacto;
 import com.example.gestordecorreo.GrupoDeUsuarios;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.UUID;
 
 public class EmailClient {
@@ -229,73 +230,108 @@ public class EmailClient {
         }
     }
 
+
     public static void main(String[] args) {
-        if (args.length < 2 || (!args[0].equals("enviar") && !args[0].equals("recibir") && !args[0].equals("visualizar") && !args[0].equals("favorito"))) {
-            System.out.println("Uso para enviar a una persona: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <destinatarioEmail>\"");
-            System.out.println("Uso para enviar a un grupo: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <nombreGrupo> <excluirEmail>\"");
-            System.out.println("Uso para recibir correos: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"recibir <emailDelCliente>\"");
-            System.out.println("Uso para mostrar bandeja: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"visualizar <emailDelCliente>\"");
-            System.out.println("Uso para agregar a favoritos: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"favorito <emailDelCliente> <asuntoDelEmail>\"");
-            System.exit(0);
-        }
+        Scanner scanner = new Scanner(System.in);
+        
+        while (true) {  // Bucle infinito para mantener la aplicación abierta
+            System.out.println("Ingrese un comando para ejecutar la aplicación (enviar, recibir, visualizar, favorito) o 'salir' para cerrar:");
+            String input = scanner.nextLine().trim();
 
-        String clienteEmail = args[1];
-        EmailClient client = new EmailClient("localhost", 50051, clienteEmail);
+            if (input.equalsIgnoreCase("salir")) {
+                System.out.println("Cerrando la aplicación...");
+                break; // Rompe el bucle y cierra la aplicación
+            }
 
-        Email email = new Email();
-        email.setAsunto("Hola");
-        email.setContenido("Este es un correo de prueba para ti.");
-        email.setRemitente(client.obtenerContactoPorEmail(clienteEmail));
+            String[] commandArgs = input.split(" ");
             
+            // Comprueba que el comando sea válido y ejecute la lógica según los argumentos
+            if (commandArgs.length < 2 || (!commandArgs[0].equals("enviar") && !commandArgs[0].equals("recibir") && !commandArgs[0].equals("visualizar") && !commandArgs[0].equals("favorito"))) {
+                System.out.println("Comando no reconocido o argumentos insuficientes.");
+                mostrarInstrucciones();
+                continue;  // Reinicia el bucle para el siguiente comando
+            }
 
-        if (args[0].equals("enviar")) {
-            if (args.length == 4) { // Envio a grupo
-                String nombreGrupo = args[2];
-                String excluirEmail = args[3];
-                GrupoDeUsuarios grupo = new GrupoDeUsuarios(nombreGrupo);
-                grupo.agregarAlGrupo(client.contactoCandela);
-                grupo.agregarAlGrupo(client.contactoCarla);
-                grupo.agregarAlGrupo(client.contactoJoaquin);
+            String clienteEmail = commandArgs[1];
+            EmailClient client = new EmailClient("localhost", 50051, clienteEmail);
+            Email email = new Email();
+            email.setAsunto("Hola");
+            email.setContenido("Este es un correo de prueba para ti.");
+            email.setRemitente(client.obtenerContactoPorEmail(clienteEmail));
 
-                for (Contacto contacto : grupo.getContactos()) {
-                    if (!contacto.getEmail().equals(excluirEmail)) {
-                        email.agregarDestinatario(contacto);
+            switch (commandArgs[0]) {
+                case "enviar":
+                    if (commandArgs.length == 4) { // Envío a grupo
+                        String nombreGrupo = commandArgs[2];
+                        String excluirEmail = commandArgs[3];
+                        GrupoDeUsuarios grupo = new GrupoDeUsuarios(nombreGrupo);
+                        grupo.agregarAlGrupo(client.contactoCandela);
+                        grupo.agregarAlGrupo(client.contactoCarla);
+                        grupo.agregarAlGrupo(client.contactoJoaquin);
+
+                        for (Contacto contacto : grupo.getContactos()) {
+                            if (!contacto.getEmail().equals(excluirEmail)) {
+                                email.agregarDestinatario(contacto);
+                            }
+                        }
+                        client.enviarEmail(email);
+                    } else if (commandArgs.length == 3) { // Envío a persona
+                        String destinatarioEmail = commandArgs[2];
+                        email.agregarDestinatario(client.obtenerContactoPorEmail(destinatarioEmail));
+                        client.enviarEmail(email);
+                    } else {
+                        System.out.println("ERROR: Uso incorrecto");
+                        mostrarInstrucciones();
                     }
-                }
+                    break;
 
-                client.enviarEmail(email);
-            } else if (args.length == 3) { // Envi­o a persona
-                String destinatarioEmail = args[2];
-                                
-                email.agregarDestinatario(client.obtenerContactoPorEmail(destinatarioEmail));
-            
-                client.enviarEmail(email);
-            } else {
-                System.out.println("ERROR: Uso incorrecto");
-                System.out.println("Uso para enviar: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <destinatarioEmail>\" para una persona");
-                System.out.println("Uso para enviar: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <nombreGrupo> <excluirEmail>\" para un grupo");
+                case "recibir":
+                    client.recibirEmails();
+                    break;
+
+                case "visualizar":
+                    client.verBandeja();
+                    if (client.obtenerContactoPorEmail(clienteEmail).bandeja.getFavoritos().size() > 0) {
+                        System.out.println("Favoritos: " + client.obtenerContactoPorEmail(clienteEmail).bandeja.getFavoritos());
+                    }
+                    break;
+
+                case "favorito":
+                    if (commandArgs.length >= 3) {
+                        String asunto = commandArgs[2];
+                        email.setAsunto(asunto);
+                        client.agregarFavorito(email);
+                        System.out.println("FAVORITOS DE " + clienteEmail + ":");
+                        for (Email e : client.obtenerContactoPorEmail(clienteEmail).bandeja.getFavoritos()) {
+                            System.out.println("----------------------------------------");
+                            System.out.println("Asunto: " + e.getAsunto());
+                            System.out.println("De: " + e.getRemitente().getNombre() + " (" + e.getRemitente().getEmail() + ")");
+                            System.out.println("Contenido: " + e.getContenido());
+                            System.out.println("----------------------------------------");
+                        }
+                    } else {
+                        System.out.println("ERROR: Uso incorrecto");
+                        mostrarInstrucciones();
+                    }
+                    break;
+
+                default:
+                    System.out.println("Comando no reconocido.");
+                    mostrarInstrucciones();
             }
-        } else if (args[0].equals("recibir")) {
-            client.recibirEmails();
-        } else if (args[0].equals("visualizar")) {
-            client.verBandeja();
-            //Mostrar favoritos solo si hay correos en favoritos
-            if (client.obtenerContactoPorEmail(clienteEmail).bandeja.getFavoritos().size() > 0) {
-                System.out.println("Favoritos: " + client.obtenerContactoPorEmail(clienteEmail).bandeja.getFavoritos());
-            }    
-        } else if (args[0].equals("favorito")) {     
-            client.agregarFavorito(email);
-            System.out.println("FAVORITOS DE " + clienteEmail + ":");
-            for (Email e : client.obtenerContactoPorEmail(clienteEmail).bandeja.getFavoritos()) {
-                System.out.println("----------------------------------------");
-                System.out.println("Asunto: " + email.getAsunto());
-                System.out.println("De: " + email.getRemitente().getNombre() + " (" + email.getRemitente().getEmail() + ")");
-                System.out.println("Contenido: " + email.getContenido());
-                System.out.println("----------------------------------------");
-            }
-        }    
-        client.shutdown();
+            client.shutdown();
+        }
     }
+
+    private static void mostrarInstrucciones() {
+        System.out.println("Uso para enviar a una persona: enviar <remitenteEmail> <destinatarioEmail>");
+        System.out.println("Uso para enviar a un grupo: enviar <remitenteEmail> <nombreGrupo> <excluirEmail>");
+        System.out.println("Uso para recibir correos: recibir <emailDelCliente>");
+        System.out.println("Uso para mostrar bandeja: visualizar <emailDelCliente>");
+        System.out.println("Uso para agregar a favoritos: favorito <emailDelCliente> <asuntoDelEmail>");
+    }
+
+    
     private Contacto obtenerContactoPorEmail(String email) {
         if (email.equals(contactoJoaquin.getEmail())) return contactoJoaquin;
         if (email.equals(contactoCandela.getEmail())) return contactoCandela;
