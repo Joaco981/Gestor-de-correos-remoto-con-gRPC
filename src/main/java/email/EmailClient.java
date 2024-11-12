@@ -6,6 +6,8 @@ import io.grpc.stub.StreamObserver;
 import com.example.gestordecorreo.Email;
 import com.example.gestordecorreo.Contacto;
 import com.example.gestordecorreo.GrupoDeUsuarios;
+
+import java.util.List;
 import java.util.UUID;
 
 public class EmailClient {
@@ -38,6 +40,13 @@ public class EmailClient {
         contactoAugusto = new Contacto("Augusto", "augusto@gmail.com");
     }
 
+    public void agregarFavorito(Email email) {
+        obtenerContactoPorEmail(clienteEmail).bandeja.agregarFav(email);
+        System.out.println("El email con asunto '" + email.getAsunto() + "' ha sido agregado a favoritos para " + obtenerContactoPorEmail(clienteEmail).getNombre());
+    }
+    
+    
+    
     public void enviarEmail(Email email) {
         EmailOuterClass.Email.Builder emailProtoBuilder = EmailOuterClass.Email.newBuilder()
                 .setId(UUID.randomUUID().toString())
@@ -47,26 +56,43 @@ public class EmailClient {
                         .setNombreCompleto(email.getRemitente().getNombre())
                         .setEmail(email.getRemitente().getEmail())
                         .build());
-
+    
         for (Contacto destinatario : email.getDestinatarios()) {
             emailProtoBuilder.addDestinatarios(EmailOuterClass.Contacto.newBuilder()
                     .setNombreCompleto(destinatario.getNombre())
                     .setEmail(destinatario.getEmail())
                     .build());
         }
-
+    
         EmailOuterClass.Email emailProto = emailProtoBuilder.build();
         EmailOuterClass.EmailRequest request = EmailOuterClass.EmailRequest.newBuilder().setEmail(emailProto).build();
         EmailOuterClass.EmailResponse response = blockingStub.enviarEmail(request);
-
+    
         System.out.println("Correo enviado a los destinatarios:");
         for (EmailOuterClass.Contacto destinatario : emailProto.getDestinatariosList()) {
             System.out.println("-" + destinatario.getNombreCompleto() + " (" + destinatario.getEmail() + ")");
         }
         System.out.println(response.getMessage());
-
-        email.getRemitente().bandeja.getBandejaEnviados().add(email);
+    
+        // Agregar el correo a la bandeja de enviados del remitente
+        Contacto remitente = obtenerContactoPorEmail(email.getRemitente().getEmail());
+        if (remitente != null && remitente.bandeja != null) {
+            remitente.bandeja.getBandejaEnviados().add(email);
+        } else {
+            System.err.println("Error: No se encontró el remitente o la bandeja de enviados del remitente está vacía.");
+        }
+    
+        // Agregar el correo a la bandeja de entrada de cada destinatario
+        for (Contacto destinatario : email.getDestinatarios()) {
+            Contacto contactoDestinatario = obtenerContactoPorEmail(destinatario.getEmail());
+            if (contactoDestinatario != null && contactoDestinatario.bandeja != null) {
+                contactoDestinatario.bandeja.getBandejaEntrada().add(email);
+            } else {
+                System.err.println("Error: No se encontró el destinatario o la bandeja de entrada está vacía para " + destinatario.getNombre());
+            }
+        }
     }
+    
 
     public void verBandeja() {
         try {
@@ -74,14 +100,13 @@ public class EmailClient {
                 .setNombreCompleto("") 
                 .setEmail(clienteEmail)
                 .build();
-
+    
             EmailOuterClass.BandejaRequest request = EmailOuterClass.BandejaRequest.newBuilder()
                 .setClientEmail(clientContacto)
                 .build();
-
+    
             EmailOuterClass.BandejaResponse response = blockingStub.verBandeja(request);
-
-            
+    
             System.out.println("BANDEJA DE ENTRADA DE " + clienteEmail + ":");
             for (EmailOuterClass.Email email : response.getBandejaEntradaList()) {
                 System.out.println("----------------------------------------");
@@ -89,9 +114,7 @@ public class EmailClient {
                 System.out.println("De: " + email.getRemitente().getNombreCompleto() + " (" + email.getRemitente().getEmail() + ")");
                 System.out.println("Contenido: " + email.getContenido());
                 System.out.println("----------------------------------------");
-                System.out.println();
             }
-
             
             System.out.println();
             System.out.println("BANDEJA DE ENVIADOS DE " + clienteEmail + ":");
@@ -101,12 +124,13 @@ public class EmailClient {
                 System.out.println("De: " + email.getRemitente().getNombreCompleto() + " (" + email.getRemitente().getEmail() + ")");
                 System.out.println("Contenido: " + email.getContenido());
                 System.out.println("----------------------------------------");
-                System.out.println();
             }
+    
         } catch (Exception e) {
             System.err.println("Error al obtener la bandeja: " + e.getMessage());
         }
     }
+    
 
     public Email convertirEmail(EmailOuterClass.Email emailOuter) {
         
@@ -206,29 +230,28 @@ public class EmailClient {
     }
 
     public static void main(String[] args) {
-        if (args.length < 2 || (!args[0].equals("enviar") && !args[0].equals("recibir") && !args[0].equals("visualizar"))) {
+        if (args.length < 2 || (!args[0].equals("enviar") && !args[0].equals("recibir") && !args[0].equals("visualizar") && !args[0].equals("favorito"))) {
             System.out.println("Uso para enviar a una persona: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <destinatarioEmail>\"");
             System.out.println("Uso para enviar a un grupo: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"enviar <remitenteEmail> <nombreGrupo> <excluirEmail>\"");
             System.out.println("Uso para recibir correos: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"recibir <emailDelCliente>\"");
             System.out.println("Uso para mostrar bandeja: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"visualizar <emailDelCliente>\"");
+            System.out.println("Uso para agregar a favoritos: mvn exec:java -Dexec.mainClass=\"email.EmailClient\" -Dexec.args=\"favorito <emailDelCliente> <asuntoDelEmail>\"");
             System.exit(0);
         }
 
         String clienteEmail = args[1];
         EmailClient client = new EmailClient("localhost", 50051, clienteEmail);
 
+        Email email = new Email();
+        email.setAsunto("Hola");
+        email.setContenido("Este es un correo de prueba para ti.");
+        email.setRemitente(client.obtenerContactoPorEmail(clienteEmail));
+            
+
         if (args[0].equals("enviar")) {
-            if (args.length == 4) { // EnvÃ­o a grupo
+            if (args.length == 4) { // Envio a grupo
                 String nombreGrupo = args[2];
                 String excluirEmail = args[3];
-                
-                Email email = new Email();
-                email.setAsunto("Hola a todos");
-                email.setContenido("Este es un correo de prueba para el grupo.");
-
-                // Cambiar el remitente al email ingresado por argumento
-                email.setRemitente(client.obtenerContactoPorEmail(clienteEmail));
-
                 GrupoDeUsuarios grupo = new GrupoDeUsuarios(nombreGrupo);
                 grupo.agregarAlGrupo(client.contactoCandela);
                 grupo.agregarAlGrupo(client.contactoCarla);
@@ -241,15 +264,9 @@ public class EmailClient {
                 }
 
                 client.enviarEmail(email);
-            } else if (args.length == 3) { // EnvÃ­o a persona
+            } else if (args.length == 3) { // Envi­o a persona
                 String destinatarioEmail = args[2];
-                
-                Email email = new Email();
-                email.setAsunto("Hola");
-                email.setContenido("Este es un correo de prueba para ti.");
-            
-                // Asignar remitente y destinatario
-                email.setRemitente(client.obtenerContactoPorEmail(clienteEmail));
+                                
                 email.agregarDestinatario(client.obtenerContactoPorEmail(destinatarioEmail));
             
                 client.enviarEmail(email);
@@ -262,11 +279,23 @@ public class EmailClient {
             client.recibirEmails();
         } else if (args[0].equals("visualizar")) {
             client.verBandeja();
-        }
-
+            //Mostrar favoritos solo si hay correos en favoritos
+            if (client.obtenerContactoPorEmail(clienteEmail).bandeja.getFavoritos().size() > 0) {
+                System.out.println("Favoritos: " + client.obtenerContactoPorEmail(clienteEmail).bandeja.getFavoritos());
+            }    
+        } else if (args[0].equals("favorito")) {     
+            client.agregarFavorito(email);
+            System.out.println("FAVORITOS DE " + clienteEmail + ":");
+            for (Email e : client.obtenerContactoPorEmail(clienteEmail).bandeja.getFavoritos()) {
+                System.out.println("----------------------------------------");
+                System.out.println("Asunto: " + email.getAsunto());
+                System.out.println("De: " + email.getRemitente().getNombre() + " (" + email.getRemitente().getEmail() + ")");
+                System.out.println("Contenido: " + email.getContenido());
+                System.out.println("----------------------------------------");
+            }
+        }    
         client.shutdown();
     }
-
     private Contacto obtenerContactoPorEmail(String email) {
         if (email.equals(contactoJoaquin.getEmail())) return contactoJoaquin;
         if (email.equals(contactoCandela.getEmail())) return contactoCandela;

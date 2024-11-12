@@ -43,4 +43,5 @@ message BandejaRequest {
 message BandejaResponse {
     repeated Email bandejaEntrada = 1; 
     repeated Email bandejaEnviados = 2;
+    repeated Email favoritos = 3;
 }

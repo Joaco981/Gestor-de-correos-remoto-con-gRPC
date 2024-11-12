@@ -4640,6 +4640,30 @@ public final class EmailOuterClass {
      */
     email.EmailOuterClass.EmailOrBuilder getBandejaEnviadosOrBuilder(
         int index);
+
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    java.util.List<email.EmailOuterClass.Email> 
+        getFavoritosList();
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    email.EmailOuterClass.Email getFavoritos(int index);
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    int getFavoritosCount();
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
+        getFavoritosOrBuilderList();
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    email.EmailOuterClass.EmailOrBuilder getFavoritosOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code email.BandejaResponse}
@@ -4665,6 +4689,7 @@ public final class EmailOuterClass {
     private BandejaResponse() {
       bandejaEntrada_ = java.util.Collections.emptyList();
       bandejaEnviados_ = java.util.Collections.emptyList();
+      favoritos_ = java.util.Collections.emptyList();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -4762,6 +4787,47 @@ public final class EmailOuterClass {
       return bandejaEnviados_.get(index);
     }
 
+    public static final int FAVORITOS_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private java.util.List<email.EmailOuterClass.Email> favoritos_;
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<email.EmailOuterClass.Email> getFavoritosList() {
+      return favoritos_;
+    }
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
+        getFavoritosOrBuilderList() {
+      return favoritos_;
+    }
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    @java.lang.Override
+    public int getFavoritosCount() {
+      return favoritos_.size();
+    }
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    @java.lang.Override
+    public email.EmailOuterClass.Email getFavoritos(int index) {
+      return favoritos_.get(index);
+    }
+    /**
+     * <code>repeated .email.Email favoritos = 3;</code>
+     */
+    @java.lang.Override
+    public email.EmailOuterClass.EmailOrBuilder getFavoritosOrBuilder(
+        int index) {
+      return favoritos_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -4782,6 +4848,9 @@ public final class EmailOuterClass {
       for (int i = 0; i < bandejaEnviados_.size(); i++) {
         output.writeMessage(2, bandejaEnviados_.get(i));
       }
+      for (int i = 0; i < favoritos_.size(); i++) {
+        output.writeMessage(3, favoritos_.get(i));
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -4798,6 +4867,10 @@ public final class EmailOuterClass {
       for (int i = 0; i < bandejaEnviados_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, bandejaEnviados_.get(i));
+      }
+      for (int i = 0; i < favoritos_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, favoritos_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -4818,6 +4891,8 @@ public final class EmailOuterClass {
           .equals(other.getBandejaEntradaList())) return false;
       if (!getBandejaEnviadosList()
           .equals(other.getBandejaEnviadosList())) return false;
+      if (!getFavoritosList()
+          .equals(other.getFavoritosList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -4836,6 +4911,10 @@ public final class EmailOuterClass {
       if (getBandejaEnviadosCount() > 0) {
         hash = (37 * hash) + BANDEJAENVIADOS_FIELD_NUMBER;
         hash = (53 * hash) + getBandejaEnviadosList().hashCode();
+      }
+      if (getFavoritosCount() > 0) {
+        hash = (37 * hash) + FAVORITOS_FIELD_NUMBER;
+        hash = (53 * hash) + getFavoritosList().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -4982,6 +5061,13 @@ public final class EmailOuterClass {
           bandejaEnviadosBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
+        if (favoritosBuilder_ == null) {
+          favoritos_ = java.util.Collections.emptyList();
+        } else {
+          favoritos_ = null;
+          favoritosBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -5032,6 +5118,15 @@ public final class EmailOuterClass {
           result.bandejaEnviados_ = bandejaEnviados_;
         } else {
           result.bandejaEnviados_ = bandejaEnviadosBuilder_.build();
+        }
+        if (favoritosBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) != 0)) {
+            favoritos_ = java.util.Collections.unmodifiableList(favoritos_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.favoritos_ = favoritos_;
+        } else {
+          result.favoritos_ = favoritosBuilder_.build();
         }
       }
 
@@ -5103,6 +5198,32 @@ public final class EmailOuterClass {
             }
           }
         }
+        if (favoritosBuilder_ == null) {
+          if (!other.favoritos_.isEmpty()) {
+            if (favoritos_.isEmpty()) {
+              favoritos_ = other.favoritos_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureFavoritosIsMutable();
+              favoritos_.addAll(other.favoritos_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.favoritos_.isEmpty()) {
+            if (favoritosBuilder_.isEmpty()) {
+              favoritosBuilder_.dispose();
+              favoritosBuilder_ = null;
+              favoritos_ = other.favoritos_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              favoritosBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getFavoritosFieldBuilder() : null;
+            } else {
+              favoritosBuilder_.addAllMessages(other.favoritos_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -5155,6 +5276,19 @@ public final class EmailOuterClass {
                 }
                 break;
               } // case 18
+              case 26: {
+                email.EmailOuterClass.Email m =
+                    input.readMessage(
+                        email.EmailOuterClass.Email.parser(),
+                        extensionRegistry);
+                if (favoritosBuilder_ == null) {
+                  ensureFavoritosIsMutable();
+                  favoritos_.add(m);
+                } else {
+                  favoritosBuilder_.addMessage(m);
+                }
+                break;
+              } // case 26
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -5652,6 +5786,246 @@ public final class EmailOuterClass {
         return bandejaEnviadosBuilder_;
       }
 
+      private java.util.List<email.EmailOuterClass.Email> favoritos_ =
+        java.util.Collections.emptyList();
+      private void ensureFavoritosIsMutable() {
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          favoritos_ = new java.util.ArrayList<email.EmailOuterClass.Email>(favoritos_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder> favoritosBuilder_;
+
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public java.util.List<email.EmailOuterClass.Email> getFavoritosList() {
+        if (favoritosBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(favoritos_);
+        } else {
+          return favoritosBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public int getFavoritosCount() {
+        if (favoritosBuilder_ == null) {
+          return favoritos_.size();
+        } else {
+          return favoritosBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public email.EmailOuterClass.Email getFavoritos(int index) {
+        if (favoritosBuilder_ == null) {
+          return favoritos_.get(index);
+        } else {
+          return favoritosBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public Builder setFavoritos(
+          int index, email.EmailOuterClass.Email value) {
+        if (favoritosBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFavoritosIsMutable();
+          favoritos_.set(index, value);
+          onChanged();
+        } else {
+          favoritosBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public Builder setFavoritos(
+          int index, email.EmailOuterClass.Email.Builder builderForValue) {
+        if (favoritosBuilder_ == null) {
+          ensureFavoritosIsMutable();
+          favoritos_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          favoritosBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public Builder addFavoritos(email.EmailOuterClass.Email value) {
+        if (favoritosBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFavoritosIsMutable();
+          favoritos_.add(value);
+          onChanged();
+        } else {
+          favoritosBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public Builder addFavoritos(
+          int index, email.EmailOuterClass.Email value) {
+        if (favoritosBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFavoritosIsMutable();
+          favoritos_.add(index, value);
+          onChanged();
+        } else {
+          favoritosBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public Builder addFavoritos(
+          email.EmailOuterClass.Email.Builder builderForValue) {
+        if (favoritosBuilder_ == null) {
+          ensureFavoritosIsMutable();
+          favoritos_.add(builderForValue.build());
+          onChanged();
+        } else {
+          favoritosBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public Builder addFavoritos(
+          int index, email.EmailOuterClass.Email.Builder builderForValue) {
+        if (favoritosBuilder_ == null) {
+          ensureFavoritosIsMutable();
+          favoritos_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          favoritosBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public Builder addAllFavoritos(
+          java.lang.Iterable<? extends email.EmailOuterClass.Email> values) {
+        if (favoritosBuilder_ == null) {
+          ensureFavoritosIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, favoritos_);
+          onChanged();
+        } else {
+          favoritosBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public Builder clearFavoritos() {
+        if (favoritosBuilder_ == null) {
+          favoritos_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          favoritosBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public Builder removeFavoritos(int index) {
+        if (favoritosBuilder_ == null) {
+          ensureFavoritosIsMutable();
+          favoritos_.remove(index);
+          onChanged();
+        } else {
+          favoritosBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public email.EmailOuterClass.Email.Builder getFavoritosBuilder(
+          int index) {
+        return getFavoritosFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public email.EmailOuterClass.EmailOrBuilder getFavoritosOrBuilder(
+          int index) {
+        if (favoritosBuilder_ == null) {
+          return favoritos_.get(index);  } else {
+          return favoritosBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public java.util.List<? extends email.EmailOuterClass.EmailOrBuilder> 
+           getFavoritosOrBuilderList() {
+        if (favoritosBuilder_ != null) {
+          return favoritosBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(favoritos_);
+        }
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public email.EmailOuterClass.Email.Builder addFavoritosBuilder() {
+        return getFavoritosFieldBuilder().addBuilder(
+            email.EmailOuterClass.Email.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public email.EmailOuterClass.Email.Builder addFavoritosBuilder(
+          int index) {
+        return getFavoritosFieldBuilder().addBuilder(
+            index, email.EmailOuterClass.Email.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .email.Email favoritos = 3;</code>
+       */
+      public java.util.List<email.EmailOuterClass.Email.Builder> 
+           getFavoritosBuilderList() {
+        return getFavoritosFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder> 
+          getFavoritosFieldBuilder() {
+        if (favoritosBuilder_ == null) {
+          favoritosBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              email.EmailOuterClass.Email, email.EmailOuterClass.Email.Builder, email.EmailOuterClass.EmailOrBuilder>(
+                  favoritos_,
+                  ((bitField0_ & 0x00000004) != 0),
+                  getParentForChildren(),
+                  isClean());
+          favoritos_ = null;
+        }
+        return favoritosBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:email.BandejaResponse)
     }
 
@@ -5758,15 +6132,15 @@ public final class EmailOuterClass {
       "\"Z\n\016ReceiveRequest\022\033\n\005email\030\001 \001(\0132\014.emai" +
       "l.Email\022\020\n\010clientId\030\002 \001(\t\022\031\n\021lastReceive" +
       "dIndex\030\003 \001(\005\"6\n\016BandejaRequest\022$\n\013client" +
-      "Email\030\001 \001(\0132\017.email.Contacto\"^\n\017BandejaR" +
+      "Email\030\001 \001(\0132\017.email.Contacto\"\177\n\017BandejaR" +
       "esponse\022$\n\016bandejaEntrada\030\001 \003(\0132\014.email." +
       "Email\022%\n\017bandejaEnviados\030\002 \003(\0132\014.email.E" +
-      "mail2\275\001\n\014EmailService\0228\n\013EnviarEmail\022\023.e" +
-      "mail.EmailRequest\032\024.email.EmailResponse\022" +
-      "6\n\rRecibirEmails\022\025.email.ReceiveRequest\032" +
-      "\014.email.Email0\001\022;\n\nVerBandeja\022\025.email.Ba" +
-      "ndejaRequest\032\026.email.BandejaResponseb\006pr" +
-      "oto3"
+      "mail\022\037\n\tfavoritos\030\003 \003(\0132\014.email.Email2\275\001" +
+      "\n\014EmailService\0228\n\013EnviarEmail\022\023.email.Em" +
+      "ailRequest\032\024.email.EmailResponse\0226\n\rReci" +
+      "birEmails\022\025.email.ReceiveRequest\032\014.email" +
+      ".Email0\001\022;\n\nVerBandeja\022\025.email.BandejaRe" +
+      "quest\032\026.email.BandejaResponseb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -5813,7 +6187,7 @@ public final class EmailOuterClass {
     internal_static_email_BandejaResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_email_BandejaResponse_descriptor,
-        new java.lang.String[] { "BandejaEntrada", "BandejaEnviados", });
+        new java.lang.String[] { "BandejaEntrada", "BandejaEnviados", "Favoritos", });
     descriptor.resolveAllFeaturesImmutable();
   }
 

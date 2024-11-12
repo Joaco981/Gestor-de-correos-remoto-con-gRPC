@@ -9,19 +9,14 @@ public class Bandeja  {
     private ArrayList<Email> bandejaEnviados = new ArrayList<>();
     private ArrayList<Email> favoritos = new ArrayList<>();
   
-  
-    public void agregarFav(Email email ){
-            if (!favoritos.contains(email) ){
+   public void agregarFav(Email email) {
+        if (!favoritos.contains(email)) {
             favoritos.add(email);
-        }else{
-            if (favoritos.contains(email)) {
-                 favoritos.remove(email);
-            }    
-           
+        } else {
+            favoritos.remove(email);
         }
-        
     }
-
+    
 
     public ArrayList<Email> getBandejaEnviados(){
         return bandejaEnviados;
