@@ -6,8 +6,6 @@ public class Email  {
     private String contenido;
     private Contacto remitente;
     private ArrayList<Contacto> destinatarios;
-    private ArrayList<Email> favoritos; 
-    
     
     //elemento del email
     public Email(){
@@ -49,17 +47,7 @@ public class Email  {
     public void marcarComoFav(Contacto persona) {
         persona.bandeja.agregarFav(this);
     }
-
-    @Override
-    public String toString() {
-        if (this.remitente == null) {
-            return "Asunto: " + this.asunto + ", De: [Remitente no disponible], Contenido: " + this.contenido;
-        }
-        return "Asunto: " + this.asunto + ", De: " + this.remitente.getNombre() + " (" + this.remitente.getEmail() + "), Contenido: " + this.contenido;
-    }
-
-
-    
+   
    
     //public Email clonarEmail() {
     //    Email correonuevo = new Email();      

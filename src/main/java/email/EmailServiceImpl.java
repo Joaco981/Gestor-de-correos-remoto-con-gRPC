@@ -43,13 +43,15 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
             email.agregarDestinatario(destinatario);
         }
 
-        // Agregar el correo a la bandeja de enviados del remitente
         bandejaEnviados.add(email);
-
-        // Agregar el correo a la bandeja de entrada de cada destinatario
         bandejaEntrada.add(email);
 
-        // Enviar la respuesta
+        if (email.getDestinatarios().size() > 1) {
+            System.out.println(remitente.getNombre() + " ha enviado un correo a un grupo");
+        } else if (email.getDestinatarios().size() == 1) {
+            System.out.println(remitente.getNombre() + " ha enviado un correo a " + email.getDestinatarios().get(0).getNombre());
+        }
+
         EmailOuterClass.EmailResponse response = EmailOuterClass.EmailResponse.newBuilder()
                 .setMessage("Email enviado correctamente")
                 .build();
@@ -130,7 +132,6 @@ public class EmailServiceImpl extends EmailServiceGrpc.EmailServiceImplBase {
 
     private ArrayList<Email> obtenerBandejaFavoritosPorEmail(EmailOuterClass.Contacto clientContacto) {
         ArrayList<Email> bandejaDelCliente = new ArrayList<>();
-        // Filtrar por correo si es necesario
         for (Email email : bandejaFavoritos) {
             if (email.getDestinatarios().stream().anyMatch(dest -> dest.getEmail().equals(clientContacto.getEmail()))) {
                 bandejaDelCliente.add(email);

@@ -7,7 +7,6 @@ import com.example.gestordecorreo.Email;
 import com.example.gestordecorreo.Contacto;
 import com.example.gestordecorreo.GrupoDeUsuarios;
 
-import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -17,7 +16,6 @@ public class EmailClient {
     private final EmailServiceGrpc.EmailServiceStub asyncStub;
     private final String clienteEmail;
 
-    // Definir contactos iniciales
     private final Contacto contactoJoaquin;
     private final Contacto contactoCandela;
     private final Contacto contactoCarla;
@@ -36,8 +34,8 @@ public class EmailClient {
         contactoJoaquin = new Contacto("Joaquin Flores", "joaquin@gmail.com");
         contactoCandela = new Contacto("Candela Cano", "cande@gmail.com");
         contactoCarla = new Contacto("Carla Marturet", "carla@gmail.com");
-        contactoRodri = new Contacto("Rodrigo Magallanes", "rodrigo@gmail.com");
-        contactoIvan = new Contacto("Ivan Caceres", "ivan@gmail.com");
+        contactoRodri = new Contacto("Rodrigo", "rodri@gmail.com");
+        contactoIvan = new Contacto("Ivan", "ivan@gmail.com");
         contactoAugusto = new Contacto("Augusto", "augusto@gmail.com");
     }
 
@@ -45,8 +43,6 @@ public class EmailClient {
         obtenerContactoPorEmail(clienteEmail).bandeja.agregarFav(email);
         System.out.println("El email con asunto '" + email.getAsunto() + "' ha sido agregado a favoritos para " + obtenerContactoPorEmail(clienteEmail).getNombre());
     }
-    
-    
     
     public void enviarEmail(Email email) {
         EmailOuterClass.Email.Builder emailProtoBuilder = EmailOuterClass.Email.newBuilder()
@@ -75,7 +71,7 @@ public class EmailClient {
         }
         System.out.println(response.getMessage());
     
-        // Agregar el correo a la bandeja de enviados del remitente
+        
         Contacto remitente = obtenerContactoPorEmail(email.getRemitente().getEmail());
         if (remitente != null && remitente.bandeja != null) {
             remitente.bandeja.getBandejaEnviados().add(email);
@@ -83,7 +79,7 @@ public class EmailClient {
             System.err.println("Error: No se encontró el remitente o la bandeja de enviados del remitente está vacía.");
         }
     
-        // Agregar el correo a la bandeja de entrada de cada destinatario
+        
         for (Contacto destinatario : email.getDestinatarios()) {
             Contacto contactoDestinatario = obtenerContactoPorEmail(destinatario.getEmail());
             if (contactoDestinatario != null && contactoDestinatario.bandeja != null) {
@@ -108,6 +104,7 @@ public class EmailClient {
     
             EmailOuterClass.BandejaResponse response = blockingStub.verBandeja(request);
     
+            System.out.println();
             System.out.println("BANDEJA DE ENTRADA DE " + clienteEmail + ":");
             for (EmailOuterClass.Email email : response.getBandejaEntradaList()) {
                 System.out.println("----------------------------------------");
@@ -122,7 +119,12 @@ public class EmailClient {
             for (EmailOuterClass.Email email : response.getBandejaEnviadosList()) {
                 System.out.println("----------------------------------------");
                 System.out.println("Asunto: " + email.getAsunto());
-                System.out.println("De: " + email.getRemitente().getNombreCompleto() + " (" + email.getRemitente().getEmail() + ")");
+                System.out.print("Para: ");
+                for (EmailOuterClass.Contacto destinatario : email.getDestinatariosList()) {
+                    System.out.println();
+                    System.out.print("-" + destinatario.getNombreCompleto() + " (" + destinatario.getEmail() + ") ");
+                }
+                System.out.println();
                 System.out.println("Contenido: " + email.getContenido());
                 System.out.println("----------------------------------------");
             }
@@ -148,13 +150,13 @@ public class EmailClient {
             remitente = new Contacto(emailOuter.getRemitente().getNombreCompleto(), remitenteEmail);
         }
 
-        // Crear el objeto Email y configurar sus campos
+    
         Email email = new Email();
         email.setAsunto(emailOuter.getAsunto());
         email.setContenido(emailOuter.getContenido());
         email.setRemitente(remitente);
 
-        // Asignar los destinatarios existentes a partir de los contactos predefinidos
+        
         for (EmailOuterClass.Contacto destinatarioOuter : emailOuter.getDestinatariosList()) {
             Contacto destinatario;
             String destinatarioEmail = destinatarioOuter.getEmail();
@@ -195,7 +197,7 @@ public class EmailClient {
                     System.out.println("  Contenido: " + emailOuter.getContenido());
                     System.out.println("----------------------------------------");
 
-                    // Convertir EmailOuterClass.Email a Email y agregarlo a la bandeja de entrada del destinatario
+                    
                     Email email = convertirEmail(emailOuter);
 
                     if (clienteEmail.equals(contactoJoaquin.getEmail())) {
@@ -234,34 +236,34 @@ public class EmailClient {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        while (true) {  // Bucle infinito para mantener la aplicación abierta
-            System.out.println("Ingrese un comando para ejecutar la aplicación (enviar, recibir, visualizar, favorito) o 'salir' para cerrar:");
+        while (true) { 
+            System.out.println("Ingrese un comando para ejecutar la aplicacion (enviar, visualizar, favorito) o 'salir' para cerrar:");
             String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("salir")) {
-                System.out.println("Cerrando la aplicación...");
-                break; // Rompe el bucle y cierra la aplicación
+                System.out.println("Cerrando la aplicacion...");
+                break; 
             }
 
             String[] commandArgs = input.split(" ");
             
-            // Comprueba que el comando sea válido y ejecute la lógica según los argumentos
+            
             if (commandArgs.length < 2 || (!commandArgs[0].equals("enviar") && !commandArgs[0].equals("recibir") && !commandArgs[0].equals("visualizar") && !commandArgs[0].equals("favorito"))) {
                 System.out.println("Comando no reconocido o argumentos insuficientes.");
                 mostrarInstrucciones();
-                continue;  // Reinicia el bucle para el siguiente comando
+                continue;  
             }
 
             String clienteEmail = commandArgs[1];
-            EmailClient client = new EmailClient("localhost", 50051, clienteEmail);
+            EmailClient client = new EmailClient("192.168.0.235", 50051, clienteEmail);
             Email email = new Email();
-            email.setAsunto("Hola");
-            email.setContenido("Este es un correo de prueba para ti.");
+            email.setAsunto("Aprobado!!!");
+            email.setContenido("Si ves este email, es porque aprobaste la materia. Felicidades!!!");
             email.setRemitente(client.obtenerContactoPorEmail(clienteEmail));
 
             switch (commandArgs[0]) {
                 case "enviar":
-                    if (commandArgs.length == 4) { // Envío a grupo
+                    if (commandArgs.length == 4) { // Envio a grupo
                         String nombreGrupo = commandArgs[2];
                         String excluirEmail = commandArgs[3];
                         GrupoDeUsuarios grupo = new GrupoDeUsuarios(nombreGrupo);
@@ -275,7 +277,7 @@ public class EmailClient {
                             }
                         }
                         client.enviarEmail(email);
-                    } else if (commandArgs.length == 3) { // Envío a persona
+                    } else if (commandArgs.length == 3) { // Envio a persona
                         String destinatarioEmail = commandArgs[2];
                         email.agregarDestinatario(client.obtenerContactoPorEmail(destinatarioEmail));
                         client.enviarEmail(email);
@@ -326,7 +328,6 @@ public class EmailClient {
     private static void mostrarInstrucciones() {
         System.out.println("Uso para enviar a una persona: enviar <remitenteEmail> <destinatarioEmail>");
         System.out.println("Uso para enviar a un grupo: enviar <remitenteEmail> <nombreGrupo> <excluirEmail>");
-        System.out.println("Uso para recibir correos: recibir <emailDelCliente>");
         System.out.println("Uso para mostrar bandeja: visualizar <emailDelCliente>");
         System.out.println("Uso para agregar a favoritos: favorito <emailDelCliente> <asuntoDelEmail>");
     }
@@ -339,7 +340,7 @@ public class EmailClient {
         if (email.equals(contactoRodri.getEmail())) return contactoRodri;
         if (email.equals(contactoIvan.getEmail())) return contactoIvan;
         if (email.equals(contactoAugusto.getEmail())) return contactoAugusto;
-        return new Contacto("Desconocido", email); // Devuelve un contacto con "Desconocido" si no se encuentra.
+        return new Contacto("Desconocido", email); 
     }
     
 }
